@@ -128,6 +128,8 @@ class Ruleset
 
         /** @psalm-suppress InvalidStringClass */
         $statrule = new $presenterClass($this->statconfig, $statruleConfig, $rule, $this->available);
+
+        /** @var \SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule $statrule */
         return $statrule;
     }
 }

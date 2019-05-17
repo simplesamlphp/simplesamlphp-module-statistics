@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
 class BaseRule
 {
     /** @var \SimpleSAML\Configuration|null */
-    protected $statconfig = null;
+    protected $statconfig;
 
     /** @var \SimpleSAML\Configuration|null */
     protected $ruleconfig;

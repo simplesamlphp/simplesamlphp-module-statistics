@@ -281,11 +281,14 @@ class StatDataset
         $i = 0;
 
         foreach ($this->results as $slot => $res) {
+            $slot = intval($slot);
+
             // check if there should be an axis here...
             if ($slot % $axislabelint == 0) {
                 $axis[] = $this->datehandlerTick->prettyDateSlot($slot, $slotsize, $dateformat_intra);
                 $axispos[] = (($i) / ($xentries - 1));
             }
+
             $lastslot = $slot;
             $i++;
         }
