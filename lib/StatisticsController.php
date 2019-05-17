@@ -175,7 +175,7 @@ class StatisticsController
         $grapher = new \SimpleSAML\Module\statistics\Graph\GoogleCharts($dimx, $dimy);
         $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 
-        if (isset($piedata)) {
+        if (!empty($piedata)) {
             $t->data['pieimgurl'] = $grapher->showPie($dataset->getDelimiterPresentationPie(), $piedata);
         }
 

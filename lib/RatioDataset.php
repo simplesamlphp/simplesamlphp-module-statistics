@@ -96,10 +96,10 @@ class RatioDataset extends StatDataset
 
 
     /**
-     * @return null
+     * @return array
      */
     public function getPieData()
     {
-        return null;
+        return [];
     }
 }

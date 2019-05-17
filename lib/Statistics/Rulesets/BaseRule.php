@@ -11,14 +11,14 @@ use Webmozart\Assert\Assert;
  */
 class BaseRule
 {
-    /** @var \SimpleSAML\Configuration */
-    protected $statconfig;
+    /** @var \SimpleSAML\Configuration|null */
+    protected $statconfig = null;
 
-    /** @var \SimpleSAML\Configuration */
+    /** @var \SimpleSAML\Configuration|null */
     protected $ruleconfig;
 
     /** @var string */
-    protected $ruleid;
+    protected $ruleid = '';
 
     /** @var array|null */
     protected $available = null;
@@ -33,8 +33,9 @@ class BaseRule
      */
     public function __construct($statconfig, $ruleconfig, $ruleid, $available)
     {
-        Assert::isInstanceOf($statconfig, Configuration::Class);
+        Assert::isInstanceOf($statconfig, Configuration::class);
         Assert::isInstanceOf($ruleconfig, Configuration::class);
+
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
         $this->ruleid = $ruleid;

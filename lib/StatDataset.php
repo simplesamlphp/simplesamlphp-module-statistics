@@ -73,6 +73,7 @@ class StatDataset
 
         $this->delimiter = '_';
         $this->max = 0;
+        $this->summary = [];
 
         $this->datehandlerTick = new DateHandler($this->statconfig->getValue('offset', 0));
         if ($this->timeresconfig->getValue('customDateHandler', 'default') === 'month') {

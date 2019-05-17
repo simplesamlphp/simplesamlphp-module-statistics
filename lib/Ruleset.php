@@ -125,6 +125,8 @@ class Ruleset
             $statruleConfig->getValue('presenter', 'statistics:BaseRule'),
             'Statistics\Rulesets'
         );
+
+        /** @psalm-suppress InvalidStringClass */
         $statrule = new $presenterClass($this->statconfig, $statruleConfig, $rule, $this->available);
         return $statrule;
     }
