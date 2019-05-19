@@ -2,7 +2,9 @@
 
 namespace SimpleSAML\Module\statistics;
 
-/*
+use SimpleSAML\Configuration;
+
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
@@ -44,7 +46,7 @@ class Aggregator
     public function __construct($fromcmdline = false)
     {
         $this->fromcmdline = $fromcmdline;
-        $this->statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
+        $this->statconfig = Configuration::getConfig('module_statistics.php');
 
         $this->statdir = $this->statconfig->getValue('statdir');
         $this->inputfile = $this->statconfig->getValue('inputfile');

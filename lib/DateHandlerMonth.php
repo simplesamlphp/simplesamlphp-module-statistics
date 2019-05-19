@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Module\statistics;
 
-/*
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */

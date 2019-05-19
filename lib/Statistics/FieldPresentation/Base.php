@@ -19,7 +19,7 @@ class Base
      * @param string $config
      * @param \SimpleSAML\XHTML\Template $template
      */
-    public function __construct($fields, $config, $template)
+    public function __construct(array $fields, $config, $template)
     {
         $this->fields = $fields;
         $this->template = $template;
