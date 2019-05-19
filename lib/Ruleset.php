@@ -2,7 +2,9 @@
 
 namespace SimpleSAML\Module\statistics;
 
-/*
+use SimpleSAML\Configuration;
+
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
@@ -26,7 +28,7 @@ class Ruleset
      *
      * @param \SimpleSAML\Configuration $statconfig
      */
-    public function __construct($statconfig)
+    public function __construct(Configuration $statconfig)
     {
         $this->statconfig = $statconfig;
         $this->init();
@@ -63,7 +65,7 @@ class Ruleset
             throw new \Exception('No aggregated statistics files found in ['.$statdir.']');
         }
 
-        /*
+        /**
          * Create array with information about available rules..
          */
         $this->availrules = array_keys($statrules);
@@ -99,7 +101,7 @@ class Ruleset
      * @param array|null $preferRule
      * @return array|null
      */
-    private function resolveSelectedRule($preferRule = null)
+    private function resolveSelectedRule(array $preferRule = null)
     {
         $rule = $this->statconfig->getString('default', $this->availrules[0]);
         if (!empty($preferRule)) {
@@ -115,7 +117,7 @@ class Ruleset
      * @param array|null $preferRule
      * @return \SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule
      */
-    public function getRule($preferRule)
+    public function getRule(array $preferRule = null)
     {
         $rule = $this->resolveSelectedRule($preferRule);
         $statrulesConfig = $this->statconfig->getConfigItem('statrules');

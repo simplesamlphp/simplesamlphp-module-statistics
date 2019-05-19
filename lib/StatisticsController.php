@@ -2,9 +2,13 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
 use SimpleSAML\Utils\HTTP;
+use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -32,10 +36,10 @@ class StatisticsController
      * @param \SimpleSAML\Configuration $config The configuration to use.
      * @param \SimpleSAML\Session $session The current user session.
      */
-    public function __construct(\SimpleSAML\Configuration $config, \SimpleSAML\Session $session)
+    public function __construct(Configuration $config, Session $session)
     {
         $this->config = $config;
-        $this->moduleConfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
+        $this->moduleConfig = Configuration::getConfig('module_statistics.php');
         $this->session = $session;
     }
 
@@ -67,7 +71,7 @@ class StatisticsController
             }
         }
 
-        $t = new \SimpleSAML\XHTML\Template($this->config, 'statistics:statmeta.twig');
+        $t = new Template($this->config, 'statistics:statmeta.twig');
         $t->data = [
             'metadata' => $metadata,
         ];
@@ -85,7 +89,7 @@ class StatisticsController
     {
         \SimpleSAML\Module\statistics\AccessCheck::checkAccess($this->moduleConfig);
 
-        /*
+        /**
          * Check input parameters
          */
         $preferRule = $request->query->get('rule');
@@ -98,17 +102,17 @@ class StatisticsController
         $preferTimeRes = $request->query->get('res');
         $delimiter = $request->query->get('delimiler');
 
-        /*
+        /**
          * Create statistics data.
          */
         $ruleset = new \SimpleSAML\Module\statistics\Ruleset($this->moduleConfig);
         $statrule = $ruleset->getRule($preferRule);
         $rule = $statrule->getRuleID();
 
-        /*
+        /**
          * Prepare template.
          */
-        $t = new \SimpleSAML\XHTML\Template($this->config, 'statistics:statistics.twig');
+        $t = new Template($this->config, 'statistics:statistics.twig');
         $t->data = [
             'delimiter' => $delimiter,
             'pageid' => 'statistics',
@@ -211,7 +215,7 @@ class StatisticsController
      * @param string|null $value
      * @return string|array
      */
-    private function getBaseURL($t, $type = 'get', $key = null, $value = null)
+    private function getBaseURL(Template $t, $type = 'get', $key = null, $value = null)
     {
         $vars = [
             'rule' => $t->data['selected_rule'],
@@ -233,7 +237,7 @@ class StatisticsController
             }
         }
         if ($type === 'get') {
-            return \SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
+            return Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
         }
         return $vars;
     }

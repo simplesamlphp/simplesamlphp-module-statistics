@@ -50,7 +50,7 @@ class RatioDataset extends StatDataset
      * @param array $a
      * @return int
      */
-    private function ag($k, $a)
+    private function ag($k, array $a)
     {
         if (array_key_exists($k, $a)) {
             return $a[$k];

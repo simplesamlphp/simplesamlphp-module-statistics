@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use SimpleSAML\Configuration;
+
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
@@ -31,7 +33,7 @@ class LogCleaner
      */
     public function __construct($inputfile = null)
     {
-        $this->statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
+        $this->statconfig = Configuration::getConfig('module_statistics.php');
 
         $this->statdir = $this->statconfig->getValue('statdir');
         $this->inputfile = $this->statconfig->getValue('inputfile');
@@ -144,7 +146,7 @@ class LogCleaner
      * @return void
      * @throws \Exceeption
      */
-    public function store($todelete, $outputfile)
+    public function store(array $todelete, $outputfile)
     {
         echo "Preparing to delete [".count($todelete)."] trackids\n";
 

@@ -3,9 +3,8 @@
 namespace SimpleSAML\Module\statistics\Statistics\Rulesets;
 
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
 
-/*
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
@@ -28,9 +27,6 @@ class Ratio extends BaseRule
      */
     public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, array $available)
     {
-        Assert::isInstanceOf($statconfig, Configuration::class);
-        Assert::isInstanceOf($ruleconfig, Configuration::class);
-
         parent::__construct($statconfig, $ruleconfig, $ruleid, $available);
 
         $refNames = $this->ruleconfig->getArray('ref');
