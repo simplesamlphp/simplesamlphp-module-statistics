@@ -3,7 +3,9 @@
 namespace SimpleSAML\Module\statistics;
 
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
+use SimpleSAML\Module;
+use SimpleSAML\Utils\Arrays;
+use SimpleSAML\XHTML\Template;
 
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
@@ -57,10 +59,8 @@ class StatDataset
      * @param string $timeres
      * @param int $fileslot
      */
-    public function __construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot)
+    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, $fileslot)
     {
-        Assert::isInstanceOf($statconfig, Configuration::class);
-        Assert::isInstanceOf($ruleconfig, Configuration::class);
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
 
@@ -73,6 +73,7 @@ class StatDataset
 
         $this->delimiter = '_';
         $this->max = 0;
+        $this->summary = [];
 
         $this->datehandlerTick = new DateHandler($this->statconfig->getValue('offset', 0));
         if ($this->timeresconfig->getValue('customDateHandler', 'default') === 'month') {
@@ -280,11 +281,14 @@ class StatDataset
         $i = 0;
 
         foreach ($this->results as $slot => $res) {
+            $slot = intval($slot);
+
             // check if there should be an axis here...
             if ($slot % $axislabelint == 0) {
                 $axis[] = $this->datehandlerTick->prettyDateSlot($slot, $slotsize, $dateformat_intra);
                 $axispos[] = (($i) / ($xentries - 1));
             }
+
             $lastslot = $slot;
             $i++;
         }
@@ -326,15 +330,15 @@ class StatDataset
      */
     public function getDelimiterPresentation()
     {
-        $config = \SimpleSAML\Configuration::getInstance();
-        $t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
+        $config = Configuration::getInstance();
+        $t = new Template($config, 'statistics:statistics.tpl.php');
 
         $availdelimiters = $this->availDelimiters();
 
         // create a delimiter presentation filter for this rule...
         if ($this->ruleconfig->hasValue('fieldPresentation')) {
             $fieldpresConfig = $this->ruleconfig->getConfigItem('fieldPresentation');
-            $classname = \SimpleSAML\Module::resolveClass(
+            $classname = Module::resolveClass(
                 $fieldpresConfig->getValue('class'),
                 'Statistics\FieldPresentation'
             );
@@ -378,7 +382,7 @@ class StatDataset
     {
         $statdir = $this->statconfig->getValue('statdir');
         $resarray = [];
-        $rules = \SimpleSAML\Utils\Arrays::arrayize($this->ruleid);
+        $rules = Arrays::arrayize($this->ruleid);
         foreach ($rules as $rule) {
             // Get file and extract results.
             $resultFileName = $statdir.'/'.$rule.'-'.$this->timeres.'-'.$this->fileslot.'.stat';
@@ -404,5 +408,14 @@ class StatDataset
             }
         }
         $this->results = $combined;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function combine(array $combined, array $resarray)
+    {
+        return array_merge($combined, $resarray);
     }
 }

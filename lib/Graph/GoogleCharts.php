@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Module\statistics\Graph;
 
-/*
+/**
  * \SimpleSAML\Module\statistics\Graph\GoogleCharts will help you to create a Google Chart
  * using the Google Charts API.
  *
@@ -11,15 +11,12 @@ namespace SimpleSAML\Module\statistics\Graph;
  */
 class GoogleCharts
 {
-    /**
-     * @var integer
-     */
+    /** @var integer */
     private $x;
 
-    /**
-     * @var integer
-     */
+    /** @var integer */
     private $y;
+
 
     /**
      * Constructor.
@@ -40,7 +37,7 @@ class GoogleCharts
      * @param array $axis
      * @return string
      */
-    private function encodeaxis($axis)
+    private function encodeaxis(array $axis)
     {
         return join('|', $axis);
     }
@@ -50,7 +47,7 @@ class GoogleCharts
      * @param array $datasets
      * @return string
      */
-    private function encodedata($datasets)
+    private function encodedata(array $datasets)
     {
         $setstr = [];
         foreach ($datasets as $dataset) {
@@ -64,12 +61,12 @@ class GoogleCharts
      * @param array $values
      * @return string
      */
-    public static function extEncode($values) // $max = 4095, $min = 0
+    public static function extEncode(array $values) // $max = 4095, $min = 0
     {
         $extended_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.';
         $chardata = '';
         $delta = 4095;
-        $size = (strlen($extended_table));
+        $size = strlen($extended_table);
 
         foreach ($values as $k => $v) {
             if ($v >= 0 && $v <= 100) {
@@ -90,12 +87,12 @@ class GoogleCharts
      *   http://code.google.com/apis/chart/
      *
      * @param array $axis        Axis
-     * @param array $axispos       Axis positions
+     * @param array $axispos     Axis positions
      * @param array $datasets    Datasets values
-     * @param array $maxes         Max value. Will be the topmost value on the Y-axis.
+     * @param array $maxes       Max value. Will be the topmost value on the Y-axis.
      * @return string
      */
-    public function show($axis, $axispos, $datasets, $maxes)
+    public function show(array $axis, array $axispos, array $datasets, array $maxes)
     {
         $labeld = '&chxt=x,y'.'&chxr=0,0,1|1,0,'.$maxes[0];
         if (count($datasets) > 1) {
@@ -132,7 +129,7 @@ class GoogleCharts
      * @param array $datasets
      * @return string
      */
-    public function showPie($axis, $datasets)
+    public function showPie(array $axis, array $datasets)
     {
         $url = 'https://chart.apis.google.com/chart?'.
 

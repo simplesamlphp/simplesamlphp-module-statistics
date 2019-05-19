@@ -2,27 +2,21 @@
 
 namespace SimpleSAML\Module\statistics;
 
-/*
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class LogParser
 {
-    /**
-     * @var integer
-     */
+    /** @var integer */
     private $datestart;
 
-    /**
-     * @var integer
-     */
+    /** @var integer */
     private $datelength;
 
-    /**
-     * @var integer
-     */
+    /** @var integer */
     private $offset;
+
 
     /**
      * Constructor
@@ -47,9 +41,8 @@ class LogParser
     public function parseEpoch($line)
     {
         $epoch = strtotime(substr($line, 0, $this->datelength));
-        if ($epoch > time() + 2678400) {
-            // 60 * 60 * 24 * 31 = 2678400
-            /*
+        if ($epoch > time() + 2678400) { // 60 * 60 * 24 * 31 = 2678400
+            /**
              * More than a month in the future - probably caused by
              * the log files missing the year.
              * We will therefore subtrackt one year.
