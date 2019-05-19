@@ -2,12 +2,29 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use SimpleSAML\Configuration;
+
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class RatioDataset extends StatDataset
 {
+    /**
+     * Constructor
+     *
+     * @param \SimpleSAML\Configuration $statconfig
+     * @param \SimpleSAML\Configuration $ruleconfig
+     * @param string $ruleid
+     * @param string $timeres
+     * @param int $fileslot
+     */
+    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, $fileslot)
+    {
+        parent::__construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot);
+    }    
+
+
     /**
      * @return void
      */
@@ -50,7 +67,7 @@ class RatioDataset extends StatDataset
      * @param array $a
      * @return int
      */
-    private function ag($k, $a)
+    private function ag($k, array $a)
     {
         if (array_key_exists($k, $a)) {
             return $a[$k];
@@ -78,7 +95,7 @@ class RatioDataset extends StatDataset
      * @param array $result2
      * @return array
      */
-    public function combine($result1, $result2)
+    public function combine(array $result1, array $result2)
     {
         $combined = [];
 
@@ -96,10 +113,10 @@ class RatioDataset extends StatDataset
 
 
     /**
-     * @return null
+     * @return array
      */
     public function getPieData()
     {
-        return null;
+        return [];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\statistics\Statistics\FieldPresentation;
 
+use SimpleSAML\Metadata\MetaDataStorageHandler;
+
 class Entity extends Base
 {
     /**
@@ -9,7 +11,7 @@ class Entity extends Base
      */
     public function getPresentation()
     {
-        $mh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $mh = MetaDataStorageHandler::getMetadataHandler();
         $metadata = $mh->getList($this->config);
 
         $translation = ['_' => 'All services'];

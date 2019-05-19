@@ -3,9 +3,8 @@
 namespace SimpleSAML\Module\statistics\Statistics\Rulesets;
 
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
 
-/*
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
@@ -18,10 +17,11 @@ class BaseRule
     protected $ruleconfig;
 
     /** @var string */
-    protected $ruleid;
+    protected $ruleid = '';
 
-    /** @var array|null */
-    protected $available = null;
+    /** @var array */
+    protected $available = [];
+
 
     /**
      * Constructor
@@ -31,10 +31,8 @@ class BaseRule
      * @param string $ruleid
      * @param array $available
      */
-    public function __construct($statconfig, $ruleconfig, $ruleid, $available)
+    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, array $available)
     {
-        Assert::isInstanceOf($statconfig, Configuration::Class);
-        Assert::isInstanceOf($ruleconfig, Configuration::class);
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
         $this->ruleid = $ruleid;
