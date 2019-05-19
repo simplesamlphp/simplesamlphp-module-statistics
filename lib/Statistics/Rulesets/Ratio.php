@@ -26,7 +26,7 @@ class Ratio extends BaseRule
      * @param string $ruleid
      * @param array $available
      */
-    public function __construct($statconfig, $ruleconfig, $ruleid, $available)
+    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, array $available)
     {
         Assert::isInstanceOf($statconfig, Configuration::class);
         Assert::isInstanceOf($ruleconfig, Configuration::class);

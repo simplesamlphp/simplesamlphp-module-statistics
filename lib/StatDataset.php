@@ -409,4 +409,12 @@ class StatDataset
         }
         $this->results = $combined;
     }
+
+    /**
+     * @return array
+     */
+    public function combine(array $combined, array $resarray)
+    {
+        return array_merge($combined, $resarray);
+    }
 }

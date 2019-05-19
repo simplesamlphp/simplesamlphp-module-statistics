@@ -78,7 +78,7 @@ class RatioDataset extends StatDataset
      * @param array $result2
      * @return array
      */
-    public function combine($result1, $result2)
+    public function combine(array $result1, array $result2)
     {
         $combined = [];
 
