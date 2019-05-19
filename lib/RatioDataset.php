@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use SimpleSAML\Configuration;
+
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
