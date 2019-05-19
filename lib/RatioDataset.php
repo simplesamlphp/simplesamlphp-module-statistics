@@ -9,6 +9,21 @@ namespace SimpleSAML\Module\statistics;
 class RatioDataset extends StatDataset
 {
     /**
+     * Constructor
+     *
+     * @param \SimpleSAML\Configuration $statconfig
+     * @param \SimpleSAML\Configuration $ruleconfig
+     * @param string $ruleid
+     * @param string $timeres
+     * @param int $fileslot
+     */
+    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, $fileslot)
+    {
+        parent::__construct();
+    }    
+
+
+    /**
      * @return void
      */
     public function aggregateSummary()

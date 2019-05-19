@@ -59,7 +59,7 @@ class StatDataset
      * @param string $timeres
      * @param int $fileslot
      */
-    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, array $fileslot)
+    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, $fileslot)
     {
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
