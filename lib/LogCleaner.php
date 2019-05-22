@@ -113,7 +113,9 @@ class LogCleaner
                 echo 'Log line: '.$logline."\n";
                 echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
                     '] to ['.date(DATE_RFC822, $epoch).']'."\n";
-                echo htmlentities(print_r($content, true));
+                /** @var string $ret */
+                $ret = print_r($content, true);
+                echo htmlentities($ret);
                 if ($i >= 13) {
                     exit;
                 }
