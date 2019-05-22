@@ -10,6 +10,9 @@ class Base
     /** @var \SimpleSAML\XHTML\Template */
     protected $template;
 
+    /** @var \SimpleSAML\Locale\Translate */
+    protected $translator;
+
     /** @var string */
     protected $config;
 
@@ -21,9 +24,10 @@ class Base
      */
     public function __construct(array $fields, $config, $template)
     {
+        $this->config = $config;
         $this->fields = $fields;
         $this->template = $template;
-        $this->config = $config;
+        $this->translator = $template->getTranslator();
     }
 
 
