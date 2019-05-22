@@ -3,6 +3,7 @@
 namespace SimpleSAML\Module\statistics\Statistics\Rulesets;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Module\statistics\RatioDataset;
 
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
@@ -104,7 +105,7 @@ class Ratio extends BaseRule
 
         $refNames = $this->ruleconfig->getArray('ref');
 
-        $dataset = new \SimpleSAML\Module\statistics\RatioDataset(
+        $dataset = new RatioDataset(
             $this->statconfig,
             $this->ruleconfig,
             $refNames,

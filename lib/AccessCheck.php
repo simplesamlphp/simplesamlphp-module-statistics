@@ -4,6 +4,7 @@ namespace SimpleSAML\Module\statistics;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\Utils\Auth;
 
 /**
  * Class implementing the access checker function for the statistics module.
@@ -37,7 +38,7 @@ class AccessCheck
             return;
         }
 
-        if (\SimpleSAML\Utils\Auth::isAdmin()) {
+        if (Auth::isAdmin()) {
             // User logged in as admin. OK.
             Logger::debug('Statistics auth - logged in as admin, access granted');
             return;
@@ -45,7 +46,7 @@ class AccessCheck
 
         if (!isset($authsource)) {
             // If authsource is not defined, init admin login.
-            \SimpleSAML\Utils\Auth::requireAdmin();
+            Auth::requireAdmin();
         }
 
         // We are using an authsource for login.

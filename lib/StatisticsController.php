@@ -53,9 +53,9 @@ class StatisticsController
      */
     public function metadata(Request $request)
     {
-        \SimpleSAML\Module\statistics\AccessCheck::checkAccess($this->moduleConfig);
+        AccessCheck::checkAccess($this->moduleConfig);
 
-        $aggr = new \SimpleSAML\Module\statistics\Aggregator();
+        $aggr = new Aggregator();
         $aggr->loadMetadata();
         $metadata = $aggr->getMetadata();
 
@@ -87,7 +87,7 @@ class StatisticsController
      */
     public function main(Request $request)
     {
-        \SimpleSAML\Module\statistics\AccessCheck::checkAccess($this->moduleConfig);
+        AccessCheck::checkAccess($this->moduleConfig);
 
         /**
          * Check input parameters
@@ -105,7 +105,7 @@ class StatisticsController
         /**
          * Create statistics data.
          */
-        $ruleset = new \SimpleSAML\Module\statistics\Ruleset($this->moduleConfig);
+        $ruleset = new Ruleset($this->moduleConfig);
         $statrule = $ruleset->getRule($preferRule);
         $rule = $statrule->getRuleID();
 
@@ -176,7 +176,7 @@ class StatisticsController
 
         $dimx = $this->moduleConfig->getValue('dimension.x', 800);
         $dimy = $this->moduleConfig->getValue('dimension.y', 350);
-        $grapher = new \SimpleSAML\Module\statistics\Graph\GoogleCharts($dimx, $dimy);
+        $grapher = new Graph\GoogleCharts($dimx, $dimy);
         $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 
         if (!empty($piedata)) {
