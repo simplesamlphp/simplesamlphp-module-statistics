@@ -3,6 +3,9 @@
 namespace SimpleSAML\Module\statistics\Statistics\Rulesets;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Module\statistics\DateHandler;
+use SimpleSAML\Module\statistics\DateHandlerMonth;
+use SimpleSAML\Module\statistics\StatDataset;
 
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
@@ -78,9 +81,9 @@ class BaseRule
         $timeresConfig = $timeresConfigs[$timeres];
 
         if (isset($timeresConfig['customDateHandler']) && $timeresConfig['customDateHandler'] == 'month') {
-            $datehandler = new \SimpleSAML\Module\statistics\DateHandlerMonth(0);
+            $datehandler = new DateHandlerMonth(0);
         } else {
-            $datehandler = new \SimpleSAML\Module\statistics\DateHandler($this->statconfig->getValue('offset', 0));
+            $datehandler = new DateHandler($this->statconfig->getValue('offset', 0));
         }
 
         /*
@@ -169,7 +172,7 @@ class BaseRule
     {
         $timeres = $this->resolveTimeRes($preferTimeRes);
         $fileslot = $this->resolveFileSlot($timeres, $preferTime);
-        $dataset = new \SimpleSAML\Module\statistics\StatDataset(
+        $dataset = new StatDataset(
             $this->statconfig,
             $this->ruleconfig,
             $this->ruleid,
