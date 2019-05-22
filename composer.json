@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\Module\\authlinkedin\\": "lib/"
+            "SimpleSAML\\Module\\statistics\\": "lib/"
         }
     },
     "autoload-dev": {
