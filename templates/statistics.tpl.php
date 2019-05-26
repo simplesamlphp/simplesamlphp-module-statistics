@@ -5,17 +5,17 @@ $this->data['header'] = 'SimpleSAMLphp Statistics';
 
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/css/statistics.css").'" />'."\n";
-$this->data['head'] = '<link rel="stylesheet" media="screen" href="'.
+$this->data['head'] .= '<link rel="stylesheet" media="screen" href="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/css/uitheme1.8/jquery-ui.css").'" />'."\n";
-$this->data['head'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleURL("statistics/assets/js/statistics.js").'"></script>'."\n";
-
-$this->data['htmlinject']['htmlContentPost'] = '<script src="'.
-    SimpleSAML\Module::getModuleURL("statistics/assets/js/jquery-1.8.js").'"></script>'."\n";
-$this->data['htmlinject']['htmlContentPost'] .= '<script src="'.
-    SimpleSAML\Module::getModuleURL("statistics/assets/js/jquery-ui-1.8.js").'"></script>'."\n";
 
 $this->includeAtTemplateBase('includes/header.php');
+
+$this->data['htmlinject']['htmlContentPost'][] = '<script src="'.
+    SimpleSAML\Module::getModuleURL("statistics/assets/js/jquery-1.8.js").'"></script>'."\n";
+$this->data['htmlinject']['htmlContentPost'][] = '<script src="'.
+    SimpleSAML\Module::getModuleURL("statistics/assets/js/jquery-ui-1.8.js").'"></script>'."\n";
+$this->data['htmlinject']['htmlContentPost'][] = '<script type="text/javascript" src="'.
+    SimpleSAML\Module::getModuleURL("statistics/assets/js/statistics.js").'"></script>'."\n";
 
 echo '<h1>'.$this->data['available.rules'][$this->data['selected.rule']]['name'].'</h1>';
 echo '<p>'.$this->data['available.rules'][$this->data['selected.rule']]['descr'].'</p>';
