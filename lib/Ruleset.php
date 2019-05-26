@@ -98,10 +98,10 @@ class Ruleset
     /**
      * Resolve which rule is selected. Taking user preference and checks if it exists.
      *
-     * @param array|null $preferRule
-     * @return array|null
+     * @param string|null $preferRule
+     * @return string|null
      */
-    private function resolveSelectedRule(array $preferRule = null)
+    private function resolveSelectedRule($preferRule = null)
     {
         $rule = $this->statconfig->getString('default', $this->availrules[0]);
         if (!empty($preferRule)) {
@@ -114,10 +114,10 @@ class Ruleset
 
 
     /**
-     * @param array|null $preferRule
+     * @param string|null $preferRule
      * @return \SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule
      */
-    public function getRule(array $preferRule = null)
+    public function getRule($preferRule = null)
     {
         $rule = $this->resolveSelectedRule($preferRule);
         $statrulesConfig = $this->statconfig->getConfigItem('statrules');
