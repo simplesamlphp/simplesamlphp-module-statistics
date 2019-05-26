@@ -147,8 +147,6 @@ $t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available_t
 $t->data['availdelimiters'] = $dataset->availDelimiters();
 $t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 
-$t->data['jquery'] = ['core' => false, 'ui' => true, 'css' => true];
-
 $t->show();
 
 
