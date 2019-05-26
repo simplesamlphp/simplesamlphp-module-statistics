@@ -237,7 +237,7 @@ class StatisticsController
             }
         }
         if ($type === 'get') {
-            return Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
+            return Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&');
         }
         return $vars;
     }
