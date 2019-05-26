@@ -12,7 +12,7 @@ $this->data['head'] .= '<script type="text/javascript" src="'.
 
 $this->data['htmlinject']['htmlContentPost'] = '<script src="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/js/jquery-1.8.js").'"></script>'."\n";
-$this->data['htmlinject']['htmlContentPost'] .= "<script src="'.
+$this->data['htmlinject']['htmlContentPost'] .= '<script src="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/js/jquery-ui-1.8.js").'"></script>'."\n";
 
 $this->includeAtTemplateBase('includes/header.php');
