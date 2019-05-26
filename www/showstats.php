@@ -2,10 +2,11 @@
 
 $config = \SimpleSAML\Configuration::getInstance();
 $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
-$session = \SimpleSAML\Session::getSessionFromRequest();
-$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 
 \SimpleSAML\Module\statistics\AccessCheck::checkAccess($statconfig);
+
+$session = \SimpleSAML\Session::getSessionFromRequest();
+$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 
 /*
  * Check input parameters
@@ -181,7 +182,7 @@ function getBaseURL($t, $type = 'get', $key = null, $value = null)
     }
 
     if ($type === 'get') {
-        return \SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
+        return \SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&');
     }
 
     return $vars;
