@@ -1,7 +1,5 @@
 <?php
 
-use Webmozart\Assert\Assert;
-
 /**
  * Hook to add the modinfo module to the frontpage.
  *
@@ -10,8 +8,8 @@ use Webmozart\Assert\Assert;
  */
 function statistics_hook_frontpage(&$links)
 {
-    Assert::isArray($links);
-    Assert::keyExists($links, 'links');
+    assert(is_array($links));
+    assert(array_key_exists('links', $links));
 
     $links['config']['statistics'] = [
         'href' => SimpleSAML\Module::getModuleURL('statistics/showstats.php'),
