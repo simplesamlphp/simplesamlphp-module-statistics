@@ -1,7 +1,5 @@
 <?php
 
-use Webmozart\Assert\Assert;
-
 /**
  * Hook to do sanity checks
  *
@@ -10,9 +8,9 @@ use Webmozart\Assert\Assert;
  */
 function statistics_hook_sanitycheck(&$hookinfo)
 {
-    Assert::isArray($hookinfo);
-    Assert::keyExists($hookinfo, 'errors');
-    Assert::keyExists($hookinfo, 'info');
+    assert(is_array($hookinfo));
+    assert(array_key_exists('errors', $hookinfo));
+    assert(array_key_exists('info', $hookinfo));
 
     try {
         $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
