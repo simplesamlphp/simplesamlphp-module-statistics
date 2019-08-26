@@ -1,8 +1,6 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-//$this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
-
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/css/statistics.css").'" />'."\n";
 $this->data['head'] .= '<link rel="stylesheet" media="screen" href="'.
@@ -17,8 +15,8 @@ $this->data['htmlinject']['htmlContentPost'][] = '<script src="'.
 $this->data['htmlinject']['htmlContentPost'][] = '<script type="text/javascript" src="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/js/statistics.js").'"></script>'."\n";
 
-echo '<h1>'.$this->data['available.rules'][$this->data['selected.rule']]['name'].'</h1>';
-echo '<p>'.$this->data['available.rules'][$this->data['selected.rule']]['descr'].'</p>';
+echo '<h1>'.$this->data['available_rules'][$this->data['selected_rule']]['name'].'</h1>';
+echo '<p>'.$this->data['available_rules'][$this->data['selected_rule']]['descr'].'</p>';
 
 // Report settings
 echo '<table class="selecttime">';
