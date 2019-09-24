@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use Exception;
 use SimpleSAML\Configuration;
 
 /**
@@ -31,7 +32,7 @@ class LogCleaner
      *
      * @param string|null $inputfile
      */
-    public function __construct($inputfile = null)
+    public function __construct(string $inputfile = null)
     {
         $this->statconfig = Configuration::getConfig('module_statistics.php');
 
@@ -49,11 +50,11 @@ class LogCleaner
     /**
      * @return void
      */
-    public function dumpConfig()
+    public function dumpConfig(): void
     {
-        echo 'Statistics directory   : '.$this->statdir."\n";
-        echo 'Input file             : '.$this->inputfile."\n";
-        echo 'Offset                 : '.$this->offset."\n";
+        echo 'Statistics directory   : ' . $this->statdir . "\n";
+        echo 'Input file             : ' . $this->inputfile . "\n";
+        echo 'Offset                 : ' . $this->offset . "\n";
     }
 
 
@@ -62,14 +63,14 @@ class LogCleaner
      * @return array
      * @throws \Exception
      */
-    public function clean($debug = false)
+    public function clean(bool $debug = false): array
     {
         if (!is_dir($this->statdir)) {
-            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
+            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
+            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
@@ -98,7 +99,7 @@ class LogCleaner
             $content = $logparser->parseContent($logline);
 
             if (($i % 10000) == 0) {
-                echo "Read line ".$i."\n";
+                echo "Read line " . $i . "\n";
             }
 
             $trackid = $content[4];
@@ -110,10 +111,9 @@ class LogCleaner
 
             if ($debug) {
                 echo "----------------------------------------\n";
-                echo 'Log line: '.$logline."\n";
-                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
-                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
-                /** @var string $ret */
+                echo 'Log line: ' . $logline . "\n";
+                echo 'Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) .
+                    '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n";
                 $ret = print_r($content, true);
                 echo htmlentities($ret);
                 if ($i >= 13) {
@@ -146,18 +146,18 @@ class LogCleaner
      * @param array $todelete
      * @param string $outputfile
      * @return void
-     * @throws \Exceeption
+     * @throws \Exception
      */
-    public function store(array $todelete, $outputfile)
+    public function store(array $todelete, string $outputfile): void
     {
-        echo "Preparing to delete [".count($todelete)."] trackids\n";
+        echo "Preparing to delete [" . count($todelete) . "] trackids\n";
 
         if (!is_dir($this->statdir)) {
-            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
+            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
+            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
@@ -189,7 +189,7 @@ class LogCleaner
             $content = $logparser->parseContent($logline);
 
             if (($i % 10000) == 0) {
-                echo "Read line ".$i."\n";
+                echo "Read line " . $i . "\n";
             }
 
             $trackid = $content[4];

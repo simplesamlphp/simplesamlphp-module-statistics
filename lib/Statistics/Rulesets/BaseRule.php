@@ -6,6 +6,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Module\statistics\DateHandler;
 use SimpleSAML\Module\statistics\DateHandlerMonth;
 use SimpleSAML\Module\statistics\StatDataset;
+use SimpleSAML\Utils;
 
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
@@ -20,7 +21,7 @@ class BaseRule
     protected $ruleconfig;
 
     /** @var string */
-    protected $ruleid = '';
+    protected $ruleid;
 
     /** @var array */
     protected $available = [];
@@ -34,7 +35,7 @@ class BaseRule
      * @param string $ruleid
      * @param array $available
      */
-    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, array $available)
+    public function __construct(Configuration $statconfig, Configuration $ruleconfig, string $ruleid, array $available)
     {
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
@@ -49,7 +50,7 @@ class BaseRule
     /**
      * @return string
      */
-    public function getRuleID()
+    public function getRuleID(): string
     {
         return $this->ruleid;
     }
@@ -58,7 +59,7 @@ class BaseRule
     /**
      * @return array
      */
-    public function availableTimeRes()
+    public function availableTimeRes(): array
     {
         $timeresConfigs = $this->statconfig->getValue('timeres');
         $available_times = [];
@@ -75,7 +76,7 @@ class BaseRule
      * @param string $timeres
      * @return array
      */
-    public function availableFileSlots($timeres)
+    public function availableFileSlots(string $timeres): array
     {
         $timeresConfigs = $this->statconfig->getValue('timeres');
         $timeresConfig = $timeresConfigs[$timeres];
@@ -106,7 +107,7 @@ class BaseRule
      * @param string $preferTimeRes
      * @return string
      */
-    protected function resolveTimeRes($preferTimeRes)
+    protected function resolveTimeRes(string $preferTimeRes): string
     {
         $timeresavailable = array_keys($this->available);
         $timeres = $timeresavailable[0];
@@ -124,7 +125,7 @@ class BaseRule
      * @param string $preferTime
      * @return int
      */
-    protected function resolveFileSlot($timeres, $preferTime)
+    protected function resolveFileSlot(string $timeres, string $preferTime): int
     {
         // Get which time (fileslot) to use.. First get a default, which is the most recent one.
         $fileslot = $this->available[$timeres][count($this->available[$timeres]) - 1];
@@ -141,7 +142,7 @@ class BaseRule
      * @param string $preferTime
      * @return array
      */
-    public function getTimeNavigation($timeres, $preferTime)
+    public function getTimeNavigation(string $timeres, string $preferTime): array
     {
         $fileslot = $this->resolveFileSlot($timeres, $preferTime);
 
@@ -168,14 +169,14 @@ class BaseRule
      * @param string $preferTime
      * @return \SimpleSAML\Module\statistics\StatDataset
      */
-    public function getDataSet($preferTimeRes, $preferTime)
+    public function getDataSet(string $preferTimeRes, string $preferTime): StatDataset
     {
         $timeres = $this->resolveTimeRes($preferTimeRes);
         $fileslot = $this->resolveFileSlot($timeres, $preferTime);
         $dataset = new StatDataset(
             $this->statconfig,
             $this->ruleconfig,
-            $this->ruleid,
+            Utils\Arrays::arrayize($this->ruleid),
             $timeres,
             $fileslot
         );

@@ -13,7 +13,7 @@ class DateHandlerMonth extends DateHandler
      *
      * @param integer $offset Date offset
      */
-    public function __construct($offset)
+    public function __construct(int $offset)
     {
         $this->offset = $offset;
     }
@@ -24,7 +24,7 @@ class DateHandlerMonth extends DateHandler
      * @param int $slotsize
      * @return int
      */
-    public function toSlot($epoch, $slotsize)
+    public function toSlot(int $epoch, int $slotsize): int
     {
         $dsttime = $this->getDST($epoch) + $epoch;
         $parsed = getdate($dsttime);
@@ -38,7 +38,7 @@ class DateHandlerMonth extends DateHandler
      * @param int $slotsize
      * @return int
      */
-    public function fromSlot($slot, $slotsize)
+    public function fromSlot(int $slot, int $slotsize): int
     {
         $month = ($slot % 12);
         $year = 2000 + intval(floor($slot / 12));
@@ -53,10 +53,10 @@ class DateHandlerMonth extends DateHandler
      * @param string $dateformat
      * @return string
      */
-    public function prettyHeader($from, $to, $slotsize, $dateformat)
+    public function prettyHeader(int $from, int $to, int $slotsize, string $dateformat): string
     {
         $month = ($from % 12) + 1;
         $year = 2000 + intval(floor($from / 12));
-        return $year.'-'.$month;
+        return $year . '-' . $month;
     }
 }

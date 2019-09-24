@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use Exception;
 use SimpleSAML\Configuration;
 
 /**
@@ -43,7 +44,7 @@ class Aggregator
      *
      * @param bool $fromcmdline
      */
-    public function __construct($fromcmdline = false)
+    public function __construct(bool $fromcmdline = false)
     {
         $this->fromcmdline = $fromcmdline;
         $this->statconfig = Configuration::getConfig('module_statistics.php');
@@ -61,29 +62,30 @@ class Aggregator
     /**
      * @return void
      */
-    public function dumpConfig()
+    public function dumpConfig(): void
     {
-        echo 'Statistics directory   : '.$this->statdir."\n";
-        echo 'Input file             : '.$this->inputfile."\n";
-        echo 'Offset                 : '.$this->offset."\n";
+        echo 'Statistics directory   : ' . $this->statdir . "\n";
+        echo 'Input file             : ' . $this->inputfile . "\n";
+        echo 'Offset                 : ' . $this->offset . "\n";
     }
 
 
     /**
      * @return void
      */
-    public function debugInfo()
+    public function debugInfo(): void
     {
-        echo 'Memory usage           : '.number_format(memory_get_usage() / 1048576, 2)." MB\n"; // 1024*1024=1048576
+        // 1024*1024=1048576
+        echo 'Memory usage           : ' . number_format(memory_get_usage() / 1048576, 2) . " MB\n";
     }
 
 
     /**
      * @return void
      */
-    public function loadMetadata()
+    public function loadMetadata(): void
     {
-        $filename = $this->statdir.'/.stat.metadata';
+        $filename = $this->statdir . '/.stat.metadata';
         $metadata = null;
         if (file_exists($filename)) {
             $metadata = unserialize(file_get_contents($filename));
@@ -95,7 +97,7 @@ class Aggregator
     /**
      * @return array|null
      */
-    public function getMetadata()
+    public function getMetadata(): ?array
     {
         return $this->metadata;
     }
@@ -104,13 +106,13 @@ class Aggregator
     /**
      * @return void
      */
-    public function saveMetadata()
+    public function saveMetadata(): void
     {
         $this->metadata['time'] = time() - $this->starttime;
         $this->metadata['memory'] = memory_get_usage();
         $this->metadata['lastrun'] = time();
 
-        $filename = $this->statdir.'/.stat.metadata';
+        $filename = $this->statdir . '/.stat.metadata';
         file_put_contents($filename, serialize($this->metadata), LOCK_EX);
     }
 
@@ -120,22 +122,22 @@ class Aggregator
      * @return array
      * @throws \Exception
      */
-    public function aggregate($debug = false)
+    public function aggregate(bool $debug = false): array
     {
         $this->loadMetadata();
 
         if (!is_dir($this->statdir)) {
-            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
+            throw new Exception('Statistics module: output dir does not exist [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
+            throw new Exception('Statistics module: input file does not exist [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
         if ($file === false) {
-            throw new \Exception('Statistics module: unable to open file ['.$this->inputfile.']');
+            throw new Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
         }
 
         $logparser = new LogParser(
@@ -180,15 +182,14 @@ class Aggregator
             $action = trim($content[5]);
 
             if ($this->fromcmdline && ($i % 10000) == 0) {
-                echo "Read line ".$i."\n";
+                echo "Read line " . $i . "\n";
             }
 
             if ($debug) {
                 echo "----------------------------------------\n";
-                echo 'Log line: '.$logline."\n";
-                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
-                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
-                /** @var string $ret */
+                echo 'Log line: ' . $logline . "\n";
+                echo 'Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) .
+                    '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n";
                 $ret = print_r($content, true);
                 echo htmlentities($ret);
                 if ($i >= 13) {
@@ -264,7 +265,7 @@ class Aggregator
      * @param mixed $colrule
      * @return string
      */
-    private static function getDifCol($content, $colrule)
+    private static function getDifCol(array $content, $colrule): string
     {
         if (is_int($colrule)) {
             return trim($content[$colrule]);
@@ -285,7 +286,7 @@ class Aggregator
      * @param array $newdata
      * @return array
      */
-    private function cummulateData($previous, $newdata)
+    private function cummulateData($previous, array $newdata): array
     {
         $dataset = [];
         foreach (func_get_args() as $item) {
@@ -309,7 +310,7 @@ class Aggregator
      * @param array $results
      * @return void
      */
-    public function store($results)
+    public function store(array $results): void
     {
         $datehandler = [
             'default' => new DateHandler($this->offset),
@@ -337,11 +338,11 @@ class Aggregator
                     $maxslot = $slotlist[count($slotlist) - 1];
 
                     // Get start and end slot number within the file, based on the fileslot.
-                    $start = (int) $datehandler['default']->toSlot(
+                    $start = $datehandler['default']->toSlot(
                         $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
-                    $end = (int) $datehandler['default']->toSlot(
+                    $end = $datehandler['default']->toSlot(
                         $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
@@ -360,7 +361,7 @@ class Aggregator
                         }
                     }
 
-                    $filename = $this->statdir.'/'.$rulename.'-'.$tres.'-'.$fileno.'.stat';
+                    $filename = $this->statdir . '/' . $rulename . '-' . $tres . '-' . $fileno . '.stat';
                     if (file_exists($filename)) {
                         $previousData = unserialize(file_get_contents($filename));
                         $filledresult = $this->cummulateData($previousData, $filledresult);

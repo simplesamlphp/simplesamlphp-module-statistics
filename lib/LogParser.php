@@ -25,7 +25,7 @@ class LogParser
      * @param integer $datelength  How many characters is the date (on the b
      * @param integer $offset      At which char is the rest of the entries starting
      */
-    public function __construct($datestart, $datelength, $offset)
+    public function __construct(int $datestart, int $datelength, int $offset)
     {
         $this->datestart = $datestart;
         $this->datelength = $datelength;
@@ -38,7 +38,7 @@ class LogParser
      *
      * @return integer
      */
-    public function parseEpoch($line)
+    public function parseEpoch(string $line): int
     {
         $epoch = strtotime(substr($line, 0, $this->datelength));
         if ($epoch > time() + 2678400) { // 60 * 60 * 24 * 31 = 2678400
@@ -64,7 +64,7 @@ class LogParser
      *
      * @return array
      */
-    public function parseContent($line)
+    public function parseContent(string $line): array
     {
         $contentstr = substr($line, $this->offset);
         $content = explode(' ', $contentstr);

@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
@@ -16,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * This class serves the statistics views available in the module.
  *
- * @package SimpleSAML\Module\admin
+ * @package SimpleSAML\Module\adfs
  */
 class StatisticsController
 {
@@ -51,7 +52,7 @@ class StatisticsController
      *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function metadata(Request $request)
+    public function metadata(Request $request): Template
     {
         AccessCheck::checkAccess($this->moduleConfig);
 
@@ -71,7 +72,7 @@ class StatisticsController
             }
         }
 
-        $t = new Template($this->config, 'statistics:statmeta.tpl.php');
+        $t = new Template($this->config, 'statistics:statmeta.twig');
         $t->data = [
             'metadata' => $metadata,
         ];
@@ -85,7 +86,7 @@ class StatisticsController
      *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function main(Request $request)
+    public function main(Request $request): Template
     {
         AccessCheck::checkAccess($this->moduleConfig);
 
@@ -112,7 +113,7 @@ class StatisticsController
         /**
          * Prepare template.
          */
-        $t = new Template($this->config, 'statistics:statistics.tpl.php');
+        $t = new Template($this->config, 'statistics:statistics.twig');
         $t->data = [
             'delimiter' => $delimiter,
             'pageid' => 'statistics',
@@ -127,7 +128,7 @@ class StatisticsController
             $dataset->setDelimiter($delimiter);
             $dataset->aggregateSummary();
             $dataset->calculateMax();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $t->data['error'] = "No data available";
             return $t;
         }
@@ -160,7 +161,7 @@ class StatisticsController
                     $data = $dataset->getDebugData();
                     foreach ($data as $de) {
                         if (isset($de[1])) {
-                            echo '"'.$de[0].'",'.$de[1]."\n";
+                            echo '"' . $de[0] . '",' . $de[1] . "\n";
                         }
                     }
                     exit;
@@ -168,7 +169,7 @@ class StatisticsController
                     $t->data['error'] = 'Export format not supported';
                     return $t;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $t->data['error'] = "No data available to compare";
                 return $t;
             }
@@ -215,7 +216,7 @@ class StatisticsController
      * @param string|null $value
      * @return string|array
      */
-    private function getBaseURL(Template $t, $type = 'get', $key = null, $value = null)
+    private function getBaseURL(Template $t, string $type = 'get', string $key = null, string $value = null)
     {
         $vars = [
             'rule' => $t->data['selected_rule'],
@@ -237,7 +238,7 @@ class StatisticsController
             }
         }
         if ($type === 'get') {
-            return Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&');
+            return Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&');
         }
         return $vars;
     }

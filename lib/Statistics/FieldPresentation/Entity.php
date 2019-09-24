@@ -9,7 +9,7 @@ class Entity extends Base
     /**
      * @return array
      */
-    public function getPresentation()
+    public function getPresentation(): array
     {
         $mh = MetaDataStorageHandler::getMetadataHandler();
         $metadata = $mh->getList($this->config);

@@ -2,7 +2,10 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use Exception;
 use SimpleSAML\Configuration;
+use SimpleSAML\Module;
+use SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule;
 
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
@@ -38,7 +41,7 @@ class Ruleset
     /**
      * @return void
      */
-    private function init()
+    private function init(): void
     {
         $statdir = $this->statconfig->getValue('statdir');
         $statrules = $this->statconfig->getValue('statrules');
@@ -48,7 +51,7 @@ class Ruleset
          * Walk through file lists, and get available [rule][fileslot]...
          */
         if (!is_dir($statdir)) {
-            throw new \Exception('Statisics output directory ['.$statdir.'] does not exist.');
+            throw new Exception('Statisics output directory [' . $statdir . '] does not exist.');
         }
         $filelist = scandir($statdir);
         $this->available = [];
@@ -62,7 +65,7 @@ class Ruleset
             }
         }
         if (empty($this->available)) {
-            throw new \Exception('No aggregated statistics files found in ['.$statdir.']');
+            throw new Exception('No aggregated statistics files found in [' . $statdir . ']');
         }
 
         /**
@@ -80,7 +83,7 @@ class Ruleset
     /**
      * @return array
      */
-    public function availableRules()
+    public function availableRules(): array
     {
         return $this->availrules;
     }
@@ -89,7 +92,7 @@ class Ruleset
     /**
      * @return array
      */
-    public function availableRulesNames()
+    public function availableRulesNames(): array
     {
         return $this->availrulenames;
     }
@@ -101,7 +104,7 @@ class Ruleset
      * @param string|null $preferRule
      * @return string|null
      */
-    private function resolveSelectedRule($preferRule = null)
+    private function resolveSelectedRule(string $preferRule = null): ?string
     {
         $rule = $this->statconfig->getString('default', $this->availrules[0]);
         if (!empty($preferRule)) {
@@ -117,13 +120,13 @@ class Ruleset
      * @param string|null $preferRule
      * @return \SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule
      */
-    public function getRule($preferRule = null)
+    public function getRule(string $preferRule = null): BaseRule
     {
         $rule = $this->resolveSelectedRule($preferRule);
         $statrulesConfig = $this->statconfig->getConfigItem('statrules');
         $statruleConfig = $statrulesConfig->getConfigItem($rule);
 
-        $presenterClass = \SimpleSAML\Module::resolveClass(
+        $presenterClass = Module::resolveClass(
             $statruleConfig->getValue('presenter', 'statistics:BaseRule'),
             'Statistics\Rulesets'
         );

@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\statistics\Statistics\FieldPresentation;
 
+use SimpleSAML\XHTML\Template;
+
 class Base
 {
     /** @var array */
@@ -22,7 +24,7 @@ class Base
      * @param string $config
      * @param \SimpleSAML\XHTML\Template $template
      */
-    public function __construct(array $fields, $config, $template)
+    public function __construct(array $fields, string $config, Template $template)
     {
         $this->config = $config;
         $this->fields = $fields;
@@ -34,7 +36,7 @@ class Base
     /**
      * @return array
      */
-    public function getPresentation()
+    public function getPresentation(): array
     {
         return ['_' => 'Total'];
     }

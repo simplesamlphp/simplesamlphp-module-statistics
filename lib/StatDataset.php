@@ -2,7 +2,9 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use Exception;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils\Arrays;
 use SimpleSAML\XHTML\Template;
@@ -22,7 +24,7 @@ class StatDataset
     /** @var \SimpleSAML\Configuration */
     protected $timeresconfig;
 
-    /** @var string */
+    /** @var array */
     protected $ruleid;
 
     /** @var int */
@@ -55,18 +57,31 @@ class StatDataset
      *
      * @param \SimpleSAML\Configuration $statconfig
      * @param \SimpleSAML\Configuration $ruleconfig
-     * @param string $ruleid
+     * @param array $ruleid
      * @param string $timeres
      * @param int $fileslot
      */
-    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, $fileslot)
-    {
+    public function __construct(
+        Configuration $statconfig,
+        Configuration $ruleconfig,
+        array $ruleid,
+        string $timeres,
+        int $fileslot
+    ) {
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
 
         $timeresconfigs = $statconfig->getConfigItem('timeres');
-        $this->timeresconfig = $timeresconfigs->getConfigItem($timeres);
+        if ($timeresconfigs === null) {
+            throw new Error\ConfigurationError('Missing \'timeres\' in module configuration.');
+        }
 
+        $timeresconfig = $timeresconfigs->getConfigItem($timeres);
+        if ($timeresconfig === null) {
+            throw new Error\ConfigurationError('Missing \'timeres.' . $timeres . '\' in module configuration.');
+        }
+
+        $this->timeresconfig = $timeresconfig;
         $this->ruleid = $ruleid;
         $this->fileslot = $fileslot;
         $this->timeres = $timeres;
@@ -90,7 +105,7 @@ class StatDataset
     /**
      * @return int
      */
-    public function getFileSlot()
+    public function getFileSlot(): int
     {
         return $this->fileslot;
     }
@@ -99,7 +114,7 @@ class StatDataset
     /**
      * @return string
      */
-    public function getTimeRes()
+    public function getTimeRes(): string
     {
         return $this->timeres;
     }
@@ -109,7 +124,7 @@ class StatDataset
      * @param string $delimiter
      * @return void
      */
-    public function setDelimiter($delimiter = '_')
+    public function setDelimiter(string $delimiter = '_'): void
     {
         if (empty($delimiter)) {
             $delimiter = '_';
@@ -121,7 +136,7 @@ class StatDataset
     /**
      * @return string|null
      */
-    public function getDelimiter()
+    public function getDelimiter(): ?string
     {
         if ($this->delimiter === '_') {
             return null;
@@ -133,7 +148,7 @@ class StatDataset
     /**
      * @return void
      */
-    public function calculateMax()
+    public function calculateMax(): void
     {
         $maxvalue = 0;
         foreach ($this->results as $slot => &$res) {
@@ -149,7 +164,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function getDebugData()
+    public function getDebugData(): array
     {
         $debugdata = [];
 
@@ -169,7 +184,7 @@ class StatDataset
     /**
      * @return void
      */
-    public function aggregateSummary()
+    public function aggregateSummary(): void
     {
         // aggregate summary table from dataset. To be used in the table view
         $this->summary = [];
@@ -190,7 +205,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function getTopDelimiters()
+    public function getTopDelimiters(): array
     {
         // create a list of delimiter keys that has the highest total summary in this period
         $topdelimiters = [];
@@ -211,7 +226,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function availDelimiters()
+    public function availDelimiters(): array
     {
         $availDelimiters = [];
         foreach ($this->summary as $key => $value) {
@@ -224,7 +239,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function getPieData()
+    public function getPieData(): array
     {
         $piedata = [];
         $sum = 0;
@@ -242,7 +257,7 @@ class StatDataset
     /**
      * @return int
      */
-    public function getMax()
+    public function getMax(): int
     {
         return $this->max;
     }
@@ -251,7 +266,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function getSummary()
+    public function getSummary(): array
     {
         return $this->summary;
     }
@@ -260,7 +275,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function getResults()
+    public function getResults(): array
     {
         return $this->results;
     }
@@ -269,7 +284,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function getAxis()
+    public function getAxis(): array
     {
         $slotsize = $this->timeresconfig->getValue('slot');
         $dateformat_intra = $this->timeresconfig->getValue('dateformat-intra');
@@ -304,7 +319,7 @@ class StatDataset
      * Walk through dataset to get percent values from max into dataset[].
      * @return array
      */
-    public function getPercentValues()
+    public function getPercentValues(): array
     {
         $i = 0;
         $dataset = [];
@@ -329,22 +344,25 @@ class StatDataset
      * @return array
      * @throws \Exception
      */
-    public function getDelimiterPresentation()
+    public function getDelimiterPresentation(): array
     {
         $config = Configuration::getInstance();
-        $t = new Template($config, 'statistics:statistics.tpl.php');
+        $t = new Template($config, 'statistics:statistics.twig');
 
         $availdelimiters = $this->availDelimiters();
 
         // create a delimiter presentation filter for this rule...
         if ($this->ruleconfig->hasValue('fieldPresentation')) {
             $fieldpresConfig = $this->ruleconfig->getConfigItem('fieldPresentation');
+            if ($fieldpresConfig === null) {
+                throw new Error\ConfigurationError('Missing \'fieldPresentation\' in module configuration.');
+            }
             $classname = Module::resolveClass(
                 $fieldpresConfig->getValue('class'),
                 'Statistics\FieldPresentation'
             );
             if (!class_exists($classname)) {
-                throw new \Exception('Could not find field presentation plugin ['.$classname.']: No class found');
+                throw new Exception('Could not find field presentation plugin [' . $classname . ']: No class found');
             }
             $presentationHandler = new $classname($availdelimiters, $fieldpresConfig->getValue('config'), $t);
 
@@ -358,7 +376,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function getDelimiterPresentationPie()
+    public function getDelimiterPresentationPie(): array
     {
         $topdelimiters = $this->getTopDelimiters();
         $delimiterPresentation = $this->getDelimiterPresentation();
@@ -379,24 +397,24 @@ class StatDataset
     /**
      * @return void
      */
-    public function loadData()
+    public function loadData(): void
     {
         $statdir = $this->statconfig->getValue('statdir');
         $resarray = [];
-        $rules = Arrays::arrayize($this->ruleid);
+        $rules = $this->ruleid;
         foreach ($rules as $rule) {
             // Get file and extract results.
-            $resultFileName = $statdir.'/'.$rule.'-'.$this->timeres.'-'.$this->fileslot.'.stat';
+            $resultFileName = $statdir . '/' . $rule . '-' . $this->timeres . '-' . $this->fileslot . '.stat';
             if (!file_exists($resultFileName)) {
-                throw new \Exception('Aggregated statitics file ['.$resultFileName.'] not found.');
+                throw new Exception('Aggregated statitics file [' . $resultFileName . '] not found.');
             }
             if (!is_readable($resultFileName)) {
-                throw new \Exception('Could not read statitics file ['.$resultFileName.']. Bad file permissions?');
+                throw new Exception('Could not read statitics file [' . $resultFileName . ']. Bad file permissions?');
             }
             $resultfile = file_get_contents($resultFileName);
             $newres = unserialize($resultfile);
             if (empty($newres)) {
-                throw new \Exception('Aggregated statistics in file ['.$resultFileName.'] was empty.');
+                throw new Exception('Aggregated statistics in file [' . $resultFileName . '] was empty.');
             }
             $resarray[] = $newres;
         }
@@ -415,7 +433,7 @@ class StatDataset
     /**
      * @return array
      */
-    public function combine(array $combined, array $resarray)
+    public function combine(array $combined, array $resarray): array
     {
         return array_merge($combined, $resarray);
     }

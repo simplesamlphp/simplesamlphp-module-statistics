@@ -15,20 +15,25 @@ class RatioDataset extends StatDataset
      *
      * @param \SimpleSAML\Configuration $statconfig
      * @param \SimpleSAML\Configuration $ruleconfig
-     * @param string $ruleid
+     * @param array $ruleid
      * @param string $timeres
      * @param int $fileslot
      */
-    public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, $fileslot)
-    {
+    public function __construct(
+        Configuration $statconfig,
+        Configuration $ruleconfig,
+        array $ruleid,
+        string $timeres,
+        int $fileslot
+    ) {
         parent::__construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot);
-    }    
+    }
 
 
     /**
      * @return void
      */
-    public function aggregateSummary()
+    public function aggregateSummary(): void
     {
         /**
          * Aggregate summary table from dataset. To be used in the table view.
@@ -67,7 +72,7 @@ class RatioDataset extends StatDataset
      * @param array $a
      * @return int
      */
-    private function ag($k, array $a)
+    private function ag(string $k, array $a): int
     {
         if (array_key_exists($k, $a)) {
             return $a[$k];
@@ -81,7 +86,7 @@ class RatioDataset extends StatDataset
      * @param int $v2
      * @return int|float
      */
-    private function divide($v1, $v2)
+    private function divide(int $v1, int $v2)
     {
         if ($v2 == 0) {
             return 0;
@@ -95,7 +100,7 @@ class RatioDataset extends StatDataset
      * @param array $result2
      * @return array
      */
-    public function combine(array $result1, array $result2)
+    public function combine(array $result1, array $result2): array
     {
         $combined = [];
 
@@ -115,7 +120,7 @@ class RatioDataset extends StatDataset
     /**
      * @return array
      */
-    public function getPieData()
+    public function getPieData(): array
     {
         return [];
     }

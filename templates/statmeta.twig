@@ -2,7 +2,7 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="/{{ baseurlpath }}modules.php/statistics/assets/css/statistics.css" rel="stylesheet">
+    <link href="{{ asset('css/statistics.css', 'statistics') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}

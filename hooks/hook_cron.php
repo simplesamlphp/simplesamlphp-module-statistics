@@ -1,5 +1,9 @@
 <?php
 
+use Exception;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Module\statistics\Aggregator;
 use Webmozart\Assert\Assert;
 
 /**
@@ -8,13 +12,12 @@ use Webmozart\Assert\Assert;
  * @param array &$croninfo  Output
  * @return void
  */
-function statistics_hook_cron(&$croninfo)
+function statistics_hook_cron(array &$croninfo): void
 {
-    Assert::isArray($croninfo);
     Assert::keyExists($croninfo, 'summary');
     Assert::keyExists($croninfo, 'tag');
 
-    $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
+    $statconfig = Configuration::getConfig('module_statistics.php');
 
     if (is_null($statconfig->getValue('cron_tag', null))) {
         return;
@@ -29,16 +32,16 @@ function statistics_hook_cron(&$croninfo)
     }
 
     try {
-        $aggregator = new \SimpleSAML\Module\statistics\Aggregator();
+        $aggregator = new Aggregator();
         $results = $aggregator->aggregate();
         if (empty($results)) {
-            \SimpleSAML\Logger::notice('Output from statistics aggregator was empty.');
+            Logger::notice('Output from statistics aggregator was empty.');
         } else {
             $aggregator->store($results);
         }
-    } catch (\Exception $e) {
-        $message = 'Loganalyzer threw exception: '.$e->getMessage();
-        \SimpleSAML\Logger::warning($message);
+    } catch (Exception $e) {
+        $message = 'Loganalyzer threw exception: ' . $e->getMessage();
+        Logger::warning($message);
         $croninfo['summary'][] = $message;
     }
 }
