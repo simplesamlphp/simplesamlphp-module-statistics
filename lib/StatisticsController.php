@@ -71,7 +71,7 @@ class StatisticsController
             }
         }
 
-        $t = new Template($this->config, 'statistics:statmeta.twig');
+        $t = new Template($this->config, 'statistics:statmeta.tpl.twig');
         $t->data = [
             'metadata' => $metadata,
         ];
@@ -112,7 +112,7 @@ class StatisticsController
         /**
          * Prepare template.
          */
-        $t = new Template($this->config, 'statistics:statistics.twig');
+        $t = new Template($this->config, 'statistics:statistics.tpl.twig');
         $t->data = [
             'delimiter' => $delimiter,
             'pageid' => 'statistics',
