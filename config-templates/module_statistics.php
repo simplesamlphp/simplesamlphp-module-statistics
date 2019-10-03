@@ -96,7 +96,7 @@ $config = [
     'statrules' => [
         'sloratio' => [
             'name'         => 'SLO to SSO ratio',
-            'descr'        => 'Comparison of the number of Single Log-Out compared to Single Sign-On.'.
+            'descr'        => 'Comparison of the number of Single Log-Out compared to Single Sign-On.' .
                 ' Graph shows how many logouts where initiated for each Single Sign-On.',
             'type'         => 'calculated',
             'presenter'    => 'statistics:Ratio',
@@ -108,7 +108,7 @@ $config = [
         ],
         'ssomulti' => [
             'name'         => 'Requests per session',
-            'descr'        => 'Number of SSO request pairs exchanged between IdP and SP within the same IdP session.'.
+            'descr'        => 'Number of SSO request pairs exchanged between IdP and SP within the same IdP session.' .
                 ' A high number indicates that the session at the SP is timing out faster than at the IdP.',
             'type'         => 'calculated',
             'presenter'    => 'statistics:Ratio',
@@ -150,7 +150,7 @@ $config = [
         ],
         'consent' => [
             'name'         => 'Consent',
-            'descr'        => 'Consent statistics. Everytime a user logs in to a service an entry is logged for'.
+            'descr'        => 'Consent statistics. Everytime a user logs in to a service an entry is logged for' .
                 ' one of three states: consent was found, consent was not found or consent storage was not available.',
             'action'       => 'consent',
             'col'          => 6,
@@ -161,7 +161,7 @@ $config = [
         ],
         'consentresponse' => [
             'name'         => 'Consent response',
-            'descr'        => 'Consent response statistics. Everytime a user accepts consent,'.
+            'descr'        => 'Consent response statistics. Everytime a user accepts consent,' .
                 ' it is logged whether the user selected to remember the consent to next time.',
             'action'       => 'consentResponse',
             'col'          => 6,

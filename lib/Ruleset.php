@@ -48,7 +48,7 @@ class Ruleset
          * Walk through file lists, and get available [rule][fileslot]...
          */
         if (!is_dir($statdir)) {
-            throw new \Exception('Statisics output directory ['.$statdir.'] does not exist.');
+            throw new \Exception('Statisics output directory [' . $statdir . '] does not exist.');
         }
         $filelist = scandir($statdir);
         $this->available = [];
@@ -62,7 +62,7 @@ class Ruleset
             }
         }
         if (empty($this->available)) {
-            throw new \Exception('No aggregated statistics files found in ['.$statdir.']');
+            throw new \Exception('No aggregated statistics files found in [' . $statdir . ']');
         }
 
         /**
