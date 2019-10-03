@@ -55,7 +55,7 @@ class AccessCheck
         $as->requireAuth();
 
         // User logged in with auth source.
-        Logger::debug('Statistics auth - valid login with auth source ['.$authsource.']');
+        Logger::debug('Statistics auth - valid login with auth source [' . $authsource . ']');
 
         // Retrieving attributes
         $attributes = $as->getAttributes();
@@ -69,12 +69,12 @@ class AccessCheck
             // Check if userid is allowed access..
             if (in_array($attributes[$useridattr][0], $allowedusers, true)) {
                 Logger::debug(
-                    'Statistics auth - User granted access by user ID ['.$attributes[$useridattr][0].']'
+                    'Statistics auth - User granted access by user ID [' . $attributes[$useridattr][0] . ']'
                 );
                 return;
             }
             Logger::debug(
-                'Statistics auth - User denied access by user ID ['.$attributes[$useridattr][0].']'
+                'Statistics auth - User denied access by user ID [' . $attributes[$useridattr][0] . ']'
             );
         } else {
             Logger::debug('Statistics auth - no allowedUsers list.');

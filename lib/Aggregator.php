@@ -63,9 +63,9 @@ class Aggregator
      */
     public function dumpConfig()
     {
-        echo 'Statistics directory   : '.$this->statdir."\n";
-        echo 'Input file             : '.$this->inputfile."\n";
-        echo 'Offset                 : '.$this->offset."\n";
+        echo 'Statistics directory   : ' . $this->statdir . "\n";
+        echo 'Input file             : ' . $this->inputfile . "\n";
+        echo 'Offset                 : ' . $this->offset . "\n";
     }
 
 
@@ -74,7 +74,8 @@ class Aggregator
      */
     public function debugInfo()
     {
-        echo 'Memory usage           : '.number_format(memory_get_usage() / 1048576, 2)." MB\n"; // 1024*1024=1048576
+        // 1024*1024=1048576
+        echo 'Memory usage           : ' . number_format(memory_get_usage() / 1048576, 2) . " MB\n";
     }
 
 
@@ -83,7 +84,7 @@ class Aggregator
      */
     public function loadMetadata()
     {
-        $filename = $this->statdir.'/.stat.metadata';
+        $filename = $this->statdir . '/.stat.metadata';
         $metadata = null;
         if (file_exists($filename)) {
             $metadata = unserialize(file_get_contents($filename));
@@ -110,7 +111,7 @@ class Aggregator
         $this->metadata['memory'] = memory_get_usage();
         $this->metadata['lastrun'] = time();
 
-        $filename = $this->statdir.'/.stat.metadata';
+        $filename = $this->statdir . '/.stat.metadata';
         file_put_contents($filename, serialize($this->metadata), LOCK_EX);
     }
 
@@ -125,17 +126,17 @@ class Aggregator
         $this->loadMetadata();
 
         if (!is_dir($this->statdir)) {
-            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
+            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
+            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
         if ($file === false) {
-            throw new \Exception('Statistics module: unable to open file ['.$this->inputfile.']');
+            throw new \Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
         }
 
         $logparser = new LogParser(
@@ -180,14 +181,14 @@ class Aggregator
             $action = trim($content[5]);
 
             if ($this->fromcmdline && ($i % 10000) == 0) {
-                echo "Read line ".$i."\n";
+                echo "Read line " . $i . "\n";
             }
 
             if ($debug) {
                 echo "----------------------------------------\n";
-                echo 'Log line: '.$logline."\n";
-                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
-                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
+                echo 'Log line: ' . $logline . "\n";
+                echo 'Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) .
+                    '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n";
                 /** @var string $ret */
                 $ret = print_r($content, true);
                 echo htmlentities($ret);
@@ -360,7 +361,7 @@ class Aggregator
                         }
                     }
 
-                    $filename = $this->statdir.'/'.$rulename.'-'.$tres.'-'.$fileno.'.stat';
+                    $filename = $this->statdir . '/' . $rulename . '-' . $tres . '-' . $fileno . '.stat';
                     if (file_exists($filename)) {
                         $previousData = unserialize(file_get_contents($filename));
                         $filledresult = $this->cummulateData($previousData, $filledresult);

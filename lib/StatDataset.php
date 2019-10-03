@@ -344,7 +344,7 @@ class StatDataset
                 'Statistics\FieldPresentation'
             );
             if (!class_exists($classname)) {
-                throw new \Exception('Could not find field presentation plugin ['.$classname.']: No class found');
+                throw new \Exception('Could not find field presentation plugin [' . $classname . ']: No class found');
             }
             $presentationHandler = new $classname($availdelimiters, $fieldpresConfig->getValue('config'), $t);
 
@@ -386,17 +386,17 @@ class StatDataset
         $rules = Arrays::arrayize($this->ruleid);
         foreach ($rules as $rule) {
             // Get file and extract results.
-            $resultFileName = $statdir.'/'.$rule.'-'.$this->timeres.'-'.$this->fileslot.'.stat';
+            $resultFileName = $statdir . '/' . $rule . '-' . $this->timeres . '-' . $this->fileslot . '.stat';
             if (!file_exists($resultFileName)) {
-                throw new \Exception('Aggregated statitics file ['.$resultFileName.'] not found.');
+                throw new \Exception('Aggregated statitics file [' . $resultFileName . '] not found.');
             }
             if (!is_readable($resultFileName)) {
-                throw new \Exception('Could not read statitics file ['.$resultFileName.']. Bad file permissions?');
+                throw new \Exception('Could not read statitics file [' . $resultFileName . ']. Bad file permissions?');
             }
             $resultfile = file_get_contents($resultFileName);
             $newres = unserialize($resultfile);
             if (empty($newres)) {
-                throw new \Exception('Aggregated statistics in file ['.$resultFileName.'] was empty.');
+                throw new \Exception('Aggregated statistics in file [' . $resultFileName . '] was empty.');
             }
             $resarray[] = $newres;
         }

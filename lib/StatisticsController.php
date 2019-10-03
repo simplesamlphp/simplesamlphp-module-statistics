@@ -160,7 +160,7 @@ class StatisticsController
                     $data = $dataset->getDebugData();
                     foreach ($data as $de) {
                         if (isset($de[1])) {
-                            echo '"'.$de[0].'",'.$de[1]."\n";
+                            echo '"' . $de[0] . '",' . $de[1] . "\n";
                         }
                     }
                     exit;
@@ -237,7 +237,7 @@ class StatisticsController
             }
         }
         if ($type === 'get') {
-            return Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&');
+            return Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&');
         }
         return $vars;
     }

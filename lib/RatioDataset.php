@@ -22,7 +22,7 @@ class RatioDataset extends StatDataset
     public function __construct(Configuration $statconfig, Configuration $ruleconfig, $ruleid, $timeres, $fileslot)
     {
         parent::__construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot);
-    }    
+    }
 
 
     /**
