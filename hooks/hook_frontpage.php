@@ -21,4 +21,3 @@ function statistics_hook_frontpage(&$links)
         'shorttext' => ['en' => 'Statistics metadata', 'no' => 'Statistikk metadata'],
     ];
 }
-
