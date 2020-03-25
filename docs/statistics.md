@@ -72,6 +72,7 @@ The first `datestart` is 1 when the date starts from the beginning of the line. 
 The `offsetspan` parameter shows on which character the first column starts, such that the STAT keyword becomes column number 3.
 
 Use the `loganalyzer` script with the `--debug` parameter to debug whether your configuration is correct. If not, then it easy to see what is wrong, for example if the STAT keyword is not in column 3.
+NOTE: when using `--debug`, no output is being written to disk!
 
 Here is some example output:
 
