@@ -7,7 +7,6 @@ use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use SimpleSAML\Module\core\ACL;
 use SimpleSAML\Utils;
 
 /**
