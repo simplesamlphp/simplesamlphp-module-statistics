@@ -9,7 +9,6 @@ use SimpleSAML\Module\statistics\StatDataset;
 use SimpleSAML\Utils;
 
 /**
- * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class BaseRule

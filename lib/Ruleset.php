@@ -8,7 +8,6 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule;
 
 /**
- * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class Ruleset

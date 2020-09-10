@@ -10,7 +10,6 @@ use SimpleSAML\Utils\Arrays;
 use SimpleSAML\XHTML\Template;
 
 /**
- * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class StatDataset

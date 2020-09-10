@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\statistics\Graph;
  * \SimpleSAML\Module\statistics\Graph\GoogleCharts will help you to create a Google Chart
  * using the Google Charts API.
  *
- * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class GoogleCharts

@@ -8,7 +8,6 @@ use SimpleSAML\Module\statistics\RatioDataset;
 use SimpleSAML\Module\statistics\StatDataset;
 
 /**
- * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class Ratio extends BaseRule
