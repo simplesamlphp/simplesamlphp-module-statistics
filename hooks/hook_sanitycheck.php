@@ -7,7 +7,6 @@ use Webmozart\Assert\Assert;
  * Hook to do sanity checks
  *
  * @param array &$hookinfo  hookinfo
- * @return void
  */
 function statistics_hook_sanitycheck(array &$hookinfo): void
 {

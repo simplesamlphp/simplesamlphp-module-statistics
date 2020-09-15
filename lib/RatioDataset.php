@@ -30,7 +30,6 @@ class RatioDataset extends StatDataset
 
 
     /**
-     * @return void
      */
     public function aggregateSummary(): void
     {

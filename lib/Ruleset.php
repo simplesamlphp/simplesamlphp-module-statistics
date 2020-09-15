@@ -38,7 +38,6 @@ class Ruleset
 
 
     /**
-     * @return void
      */
     private function init(): void
     {

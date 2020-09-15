@@ -21,7 +21,6 @@ class AccessCheck
      * If the user doesn't have access, send the user to the login page.
      *
      * @param \SimpleSAML\Configuration $statconfig
-     * @return void
      * @throws \Exception
      * @throws \SimpleSAML\Error\Exception
      */

@@ -59,7 +59,6 @@ class Aggregator
 
 
     /**
-     * @return void
      */
     public function dumpConfig(): void
     {
@@ -70,7 +69,6 @@ class Aggregator
 
 
     /**
-     * @return void
      */
     public function debugInfo(): void
     {
@@ -80,7 +78,6 @@ class Aggregator
 
 
     /**
-     * @return void
      */
     public function loadMetadata(): void
     {
@@ -103,7 +100,6 @@ class Aggregator
 
 
     /**
-     * @return void
      */
     public function saveMetadata(): void
     {
@@ -307,7 +303,6 @@ class Aggregator
 
     /**
      * @param array $results
-     * @return void
      */
     public function store(array $results): void
     {

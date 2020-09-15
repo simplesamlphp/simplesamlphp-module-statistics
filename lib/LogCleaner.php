@@ -47,7 +47,6 @@ class LogCleaner
 
 
     /**
-     * @return void
      */
     public function dumpConfig(): void
     {
@@ -144,7 +143,6 @@ class LogCleaner
     /**
      * @param array $todelete
      * @param string $outputfile
-     * @return void
      * @throws \Exception
      */
     public function store(array $todelete, string $outputfile): void

@@ -121,7 +121,6 @@ class StatDataset
 
     /**
      * @param string $delimiter
-     * @return void
      */
     public function setDelimiter(string $delimiter = '_'): void
     {
@@ -145,7 +144,6 @@ class StatDataset
 
 
     /**
-     * @return void
      */
     public function calculateMax(): void
     {
@@ -181,7 +179,6 @@ class StatDataset
 
 
     /**
-     * @return void
      */
     public function aggregateSummary(): void
     {
@@ -394,7 +391,6 @@ class StatDataset
 
 
     /**
-     * @return void
      */
     public function loadData(): void
     {
