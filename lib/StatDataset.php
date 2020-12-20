@@ -426,10 +426,12 @@ class StatDataset
 
 
     /**
+     * @param array $result1
+     * @param array $result2
      * @return array
      */
-    public function combine(array $combined, array $resarray): array
+    public function combine(array $result1, array $result2): array
     {
-        return array_merge($combined, $resarray);
+        return array_merge($result1, $result2);
     }
 }

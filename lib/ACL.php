@@ -31,6 +31,7 @@ class ACL
      */
     public function __construct($acl)
     {
+        /** @psalm-suppress RedundantConditionGivenDocblockType */
         Assert::true(is_string($acl) || is_array($acl));
 
         if (is_string($acl)) {

@@ -12,7 +12,7 @@ use SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule;
  */
 class Ruleset
 {
-    /** \SimpleSAML\Configuration */
+    /** @var \SimpleSAML\Configuration */
     private $statconfig;
 
     /** @var array */
