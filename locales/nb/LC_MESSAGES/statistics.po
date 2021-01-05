@@ -1,9 +1,3 @@
-msgid "{statistics:statistics:link_statistics"
-msgstr "Vis statistikker"
-
-msgid "{statistics:statistics:link_statistics_metadata"
-msgstr "Vis metadata om statistikker"
-
 msgid "Show statistics"
 msgstr "Vis statistikker"
 
