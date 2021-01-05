@@ -120,6 +120,10 @@ script `statistics/bin/loganalyzer.php` manually.
 
 At the Installation page there will be a link "show statistics", go there and if SimpleSAMLphp finds the statistics files in the `statdir` generated from cron or the script you will see statistics. Enjoy.
 
+## Security
+
+This module relies on displaying images from Google's APIs. Make sure to add `chart.apis.google.com` to the `img-src` Content-Security-Policy header.
+
 Support
 -------
 
