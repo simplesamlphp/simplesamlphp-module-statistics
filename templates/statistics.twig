@@ -99,7 +99,7 @@
                     <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
                     {% endfor %}
                     {% if available_times %}
-                    <select onchange="submit();" name=time>
+                    <select onchange="submit();" name="time">
                     {% for key, timedescr in available_times %}
                         {% if key == selected_time %}
                         <option selected="selected" value="{{ key }}">{{ timedescr }}</option>
