@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\Module\statistics;
+namespace SimpleSAML\Module\statistics\Controller;
 
 use Exception;
 use SimpleSAML\Configuration;
@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Module\statistics
  */
-class StatisticsController
+class Statistics
 {
     /** @var \SimpleSAML\Configuration */
     protected $config;
