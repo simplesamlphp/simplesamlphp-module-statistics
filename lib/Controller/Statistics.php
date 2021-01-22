@@ -96,8 +96,8 @@ class Statistics
             $preferRule2 = null;
         }
 
-        $preferTime = $request->query->get('time');
-        $preferTimeRes = $request->query->get('res');
+        $preferTime = strval($request->query->get('time'));
+        $preferTimeRes = strval($request->query->get('res'));
         $delimiter = strval($request->query->get('delimiter'));
 
         /**

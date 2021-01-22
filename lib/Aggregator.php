@@ -228,7 +228,7 @@ class Aggregator
                     }
 
                     $timeslot = $datehandler['default']->toSlot($epoch, $tresconfig['slot']);
-                    $fileslot = $datehandler[$dh]->toSlot($epoch, $tresconfig['fileslot']);
+                    $fileslot = $datehandler[$dh]->toSlot($epoch, intval($tresconfig['fileslot']));
 
                     if (isset($rule['action']) && ($action !== $rule['action'])) {
                         continue;
