@@ -21,15 +21,15 @@
             <tr><td>Memory usage</td><td>{{ metadata.memory }} MB</td></tr>
         {% endif %}
 
-        {% if metadata.memory is defined %}
+        {% if metadata.time is defined %}
             <tr><td>Execution time</td><td>{{ metadata.time }} seconds</td></tr>
         {% endif %}
 
-        {% if metadata.memory is defined %}
+        {% if metadata.lastlinehash is defined %}
             <tr><td>SHA1 of last processed logline</td><td>{{ metadata.lastlinehash }}</td></tr>
         {% endif %}
 
-        {% if metadata.memory is defined %}
+        {% if metadata.lastline is defined %}
             <tr><td>Last processed logline</td><td>{{ metadata.lastline }}</td></tr>
         {% endif %}
     {% else %}
