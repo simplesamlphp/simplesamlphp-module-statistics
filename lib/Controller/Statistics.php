@@ -98,7 +98,7 @@ class Statistics
 
         $preferTime = $request->query->get('time');
         $preferTimeRes = $request->query->get('res');
-        $delimiter = $request->query->get('delimiler');
+        $delimiter = $request->query->get('delimiter');
 
         /**
          * Create statistics data.
