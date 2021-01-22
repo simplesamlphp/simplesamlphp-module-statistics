@@ -7,6 +7,9 @@ use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
+use SimpleSAML\Module\statistics\AccessCheck;
+use SimpleSAML\Module\statistics\Aggregator;
+use SimpleSAML\Module\statistics\Graph;
 use SimpleSAML\Session;
 use SimpleSAML\Utils\HTTP;
 use SimpleSAML\XHTML\Template;
@@ -59,15 +62,8 @@ class Statistics
         $aggr = new Aggregator();
         $aggr->loadMetadata();
         $metadata = $aggr->getMetadata();
-
         if ($metadata !== null) {
-            if (in_array('lastrun', $metadata, true)) {
-                $metadata['lastrun'] = date('l jS \of F Y H:i:s', $metadata['lastrun']);
-            }
-            if (in_array('notBefore', $metadata, true)) {
-                $metadata['notBefore'] = date('l jS \of F Y H:i:s', $metadata['notBefore']);
-            }
-            if (in_array('memory', $metadata, true)) {
+            if (array_key_exists('memory', $metadata)) {
                 $metadata['memory'] = number_format($metadata['memory'] / (1024 * 1024), 2);
             }
         }

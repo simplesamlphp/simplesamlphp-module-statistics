@@ -54,7 +54,7 @@ class LogParser
             $year = intval(gmdate('Y', $epoch)) - 1;
             $epoch = gmmktime($hour, $minute, $second, $month, $day, $year);
         }
-        return $epoch;
+        return intval($epoch);
     }
 
 

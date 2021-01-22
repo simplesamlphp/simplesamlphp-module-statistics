@@ -161,7 +161,7 @@ class Aggregator
         $i = 0;
         // Parse through log file, line by line
         while (!feof($file)) {
-            $logline = fgets($file, 4096);
+            $logline = strval(fgets($file, 4096));
 
             // Continue if STAT is not found on line
             if (!preg_match('/STAT/', $logline)) {
