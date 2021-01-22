@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * This class serves the statistics views available in the module.
  *
- * @package SimpleSAML\Module\adfs
+ * @package SimpleSAML\Module\statistics
  */
 class StatisticsController
 {
