@@ -10,6 +10,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\statistics\AccessCheck;
 use SimpleSAML\Module\statistics\Aggregator;
 use SimpleSAML\Module\statistics\Graph;
+use SimpleSAML\Module\statistics\Ruleset;
 use SimpleSAML\Session;
 use SimpleSAML\Utils\HTTP;
 use SimpleSAML\XHTML\Template;
