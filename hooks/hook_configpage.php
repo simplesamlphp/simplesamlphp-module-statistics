@@ -12,11 +12,11 @@ use SimpleSAML\XHTML\Template;
 function statistics_hook_configpage(Template &$template): void
 {
     $template->data['links']['statistics'] = [
-        'href' => Module::getModuleURL('statistics/showstats.php'),
+        'href' => Module::getModuleURL('statistics/'),
         'text' => Translate::noop('Show statistics'),
     ];
     $template->data['links']['statisticsmeta'] = [
-        'href' => Module::getModuleURL('statistics/statmeta.php'),
+        'href' => Module::getModuleURL('statistics/metadata'),
         'text' => Translate::noop('Show statistics metadata'),
     ];
     $template->getLocalization()->addModuleDomain('statistics');
