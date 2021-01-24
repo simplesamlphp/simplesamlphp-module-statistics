@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\statistics;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Generic library for access control lists.

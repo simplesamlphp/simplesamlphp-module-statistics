@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module;
-use Webmozart\Assert\Assert;
 
 /**
  * Hook to add the modinfo module to the frontpage.

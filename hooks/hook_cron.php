@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\statistics\Aggregator;
-use Webmozart\Assert\Assert;
 
 /**
  * Hook to run a cron job.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
