@@ -6,7 +6,6 @@ use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
-use SimpleSAML\Utils\Arrays;
 use SimpleSAML\XHTML\Template;
 
 /**

@@ -172,10 +172,11 @@ class BaseRule
     {
         $timeres = $this->resolveTimeRes($preferTimeRes);
         $fileslot = $this->resolveFileSlot($timeres, $preferTime);
+        $arrayUtils = new Utils\Arrays();
         $dataset = new StatDataset(
             $this->statconfig,
             $this->ruleconfig,
-            Utils\Arrays::arrayize($this->ruleid),
+            $arrayUtils->arrayize($this->ruleid),
             $timeres,
             $fileslot
         );

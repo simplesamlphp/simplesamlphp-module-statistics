@@ -40,7 +40,8 @@ class AccessCheck
             return;
         }
 
-        if (Utils\Auth::isAdmin()) {
+        $authUtils = new Utils\Auth();
+        if ($authUtils->isAdmin()) {
             // User logged in as admin. OK.
             Logger::debug('Statistics auth - logged in as admin, access granted');
             return;
@@ -48,7 +49,7 @@ class AccessCheck
 
         if (!isset($authsource)) {
             // If authsource is not defined, init admin login.
-            Utils\Auth::requireAdmin();
+            $authUtils->requireAdmin();
         }
 
         // We are using an authsource for login.
