@@ -14,40 +14,40 @@ use SimpleSAML\XHTML\Template;
 class StatDataset
 {
     /** @var \SimpleSAML\Configuration */
-    protected $statconfig;
+    protected Configuration $statconfig;
 
     /** @var \SimpleSAML\Configuration */
-    protected $ruleconfig;
+    protected Configuration $ruleconfig;
 
     /** @var \SimpleSAML\Configuration */
-    protected $timeresconfig;
+    protected Configuration $timeresconfig;
 
     /** @var array */
-    protected $ruleid;
+    protected array $ruleid;
 
     /** @var int */
-    protected $fileslot;
+    protected int $fileslot;
 
     /** @var string */
-    protected $timeres;
+    protected string $timeres;
 
     /** @var string */
-    protected $delimiter;
+    protected string $delimiter;
 
     /** @var array */
-    protected $results;
+    protected array $results;
 
     /** @var array */
-    protected $summary;
+    protected array $summary;
 
     /** @var int */
-    protected $max;
+    protected int $max;
 
     /** @var \SimpleSAML\Module\statistics\DateHandler */
-    protected $datehandlerFile;
+    protected DateHandler $datehandlerFile;
 
     /** @var \SimpleSAML\Module\statistics\DateHandler */
-    protected $datehandlerTick;
+    protected DateHandler $datehandlerTick;
 
 
     /**

@@ -13,10 +13,10 @@ use SimpleSAML\Module\statistics\StatDataset;
 class Ratio extends BaseRule
 {
     /** @var \SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule $refrule1 */
-    protected $refrule1;
+    protected BaseRule $refrule1;
 
     /** @var \SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule $refrule2 */
-    protected $refrule2;
+    protected BaseRule $refrule2;
 
 
     /**

@@ -8,7 +8,7 @@ namespace SimpleSAML\Module\statistics;
 class DateHandler
 {
     /** @var int */
-    protected $offset;
+    protected int $offset;
 
 
     /**

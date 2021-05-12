@@ -11,31 +11,31 @@ use SimpleSAML\Configuration;
 class Aggregator
 {
     /** @var \SimpleSAML\Configuration */
-    private $statconfig;
+    private Configuration $statconfig;
 
     /** @var string */
-    private $statdir;
+    private string $statdir;
 
     /** @var string */
-    private $inputfile;
+    private string $inputfile;
 
     /** @var array */
-    private $statrules;
+    private array $statrules;
 
     /** @var int */
-    private $offset;
+    private int $offset;
 
     /** @var array|null */
-    private $metadata = null;
+    private ?array $metadata = null;
 
     /** @var bool */
-    private $fromcmdline;
+    private bool $fromcmdline;
 
     /** @var int */
-    private $starttime;
+    private int $starttime;
 
     /** @var array */
-    private $timeres;
+    private array $timeres;
 
 
     /**

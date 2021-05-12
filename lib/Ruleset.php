@@ -13,16 +13,16 @@ use SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule;
 class Ruleset
 {
     /** @var \SimpleSAML\Configuration */
-    private $statconfig;
+    private Configuration $statconfig;
 
     /** @var array */
-    private $availrulenames;
+    private array $availrulenames;
 
     /** @var array */
-    private $availrules;
+    private array $availrules;
 
     /** @var array */
-    private $available;
+    private array $available;
 
 
     /**

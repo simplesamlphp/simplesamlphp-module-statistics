@@ -14,16 +14,16 @@ use SimpleSAML\Utils;
 class BaseRule
 {
     /** @var \SimpleSAML\Configuration */
-    protected $statconfig;
+    protected Configuration $statconfig;
 
     /** @var \SimpleSAML\Configuration */
-    protected $ruleconfig;
+    protected Configuration $ruleconfig;
 
     /** @var string */
-    protected $ruleid;
+    protected string $ruleid;
 
     /** @var array */
-    protected $available = [];
+    protected array $available = [];
 
 
     /**

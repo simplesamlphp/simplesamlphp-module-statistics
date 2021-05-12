@@ -11,19 +11,19 @@ use SimpleSAML\Configuration;
 class LogCleaner
 {
     /** @var \SimpleSAML\Configuration */
-    private $statconfig;
+    private Configuration $statconfig;
 
     /** @var string */
-    private $statdir;
+    private string $statdir;
 
     /** @var string */
-    private $inputfile;
+    private string $inputfile;
 
     /** @var array */
-    private $statrules;
+    private array $statrules;
 
     /** @var int */
-    private $offset;
+    private int $offset;
 
 
     /**

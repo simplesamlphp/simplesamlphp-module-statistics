@@ -11,10 +11,10 @@ namespace SimpleSAML\Module\statistics\Graph;
 class GoogleCharts
 {
     /** @var integer */
-    private $x;
+    private int $x;
 
     /** @var integer */
-    private $y;
+    private int $y;
 
 
     /**

@@ -8,13 +8,13 @@ namespace SimpleSAML\Module\statistics;
 class LogParser
 {
     /** @var integer */
-    private $datestart;
+    private int $datestart;
 
     /** @var integer */
-    private $datelength;
+    private int $datelength;
 
     /** @var integer */
-    private $offset;
+    private int $offset;
 
 
     /**

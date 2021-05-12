@@ -21,7 +21,7 @@ class ACL
      *
      * @var array
      */
-    private $acl;
+    private array $acl;
 
 
     /**

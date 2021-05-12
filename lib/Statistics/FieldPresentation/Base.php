@@ -2,21 +2,22 @@
 
 namespace SimpleSAML\Module\statistics\Statistics\FieldPresentation;
 
+use SimpleSAML\Locale\Translate;
 use SimpleSAML\XHTML\Template;
 
 class Base
 {
     /** @var array */
-    protected $fields;
+    protected array $fields;
 
     /** @var \SimpleSAML\XHTML\Template */
-    protected $template;
+    protected Template $template;
 
     /** @var \SimpleSAML\Locale\Translate */
-    protected $translator;
+    protected Translate $translator;
 
     /** @var string */
-    protected $config;
+    protected string $config;
 
 
     /**
