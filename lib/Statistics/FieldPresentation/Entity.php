@@ -17,9 +17,7 @@ class Entity extends Base
         $translation = ['_' => 'All services'];
         foreach ($this->fields as $field) {
             if (array_key_exists($field, $metadata)) {
-                if (array_key_exists('name', $metadata[$field])) {
-                    $translation[$field] = $this->translator->getPreferredTranslation($metadata[$field]['name']);
-                }
+                $translation[$field] = $this->template->getEntityDisplayName($metadata[$field]['name']);
             }
         }
         return $translation;
