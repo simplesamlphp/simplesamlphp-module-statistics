@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\statistics;
 
+use SimpleSAML\Assert\Assert;
+
 /**
  * @package SimpleSAMLphp
  */
@@ -34,11 +36,13 @@ class DateHandlerMonth extends DateHandler
 
     /**
      * @param int $slot
-     * @param int $slotsize
+     * @param int| $slotsize
      * @return int
      */
-    public function fromSlot(int $slot, int $slotsize): int
+    public function fromSlot(int $slot, ?int $slotsize): int
     {
+        Assert::null($slotsize); // Only the upstream DateHandler uses this
+
         $month = ($slot % 12);
         $year = 2000 + intval(floor($slot / 12));
         return mktime(0, 0, 0, $month + 1, 1, $year);
