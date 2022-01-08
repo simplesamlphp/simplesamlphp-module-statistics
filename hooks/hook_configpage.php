@@ -13,13 +13,15 @@ use SimpleSAML\XHTML\Template;
  */
 function statistics_hook_configpage(Template &$template): void
 {
-    $template->data['links']['statistics'] = [
+    $template->data['links'][] = [
         'href' => Module::getModuleURL('statistics/'),
         'text' => Translate::noop('Show statistics'),
     ];
-    $template->data['links']['statisticsmeta'] = [
+
+    $template->data['links'][] = [
         'href' => Module::getModuleURL('statistics/metadata'),
         'text' => Translate::noop('Show statistics metadata'),
     ];
+
     $template->getLocalization()->addModuleDomain('statistics');
 }
