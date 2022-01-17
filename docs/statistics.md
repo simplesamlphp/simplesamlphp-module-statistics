@@ -1,16 +1,6 @@
 The SimpleSAMLphp statistics module
 ===================================
 
-
-<!-- 
-	This file is written in Markdown syntax. 
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-  * Andreas Åkre Solberg <andreas.solberg@uninett.no>
-
-
 ## Configure your logs
 
 It's recommended to use syslog for logging, then a separate log level is
@@ -40,10 +30,15 @@ Here you can see that I collect statistics in one file for several installations
 
 ## Configure the statistics module
 
-First enable the statistics module, as you enable any other module:
+First enable the statistics module, as you enable any other module: in
+`config.php`, search for the `module.enable` key and set `statistics` to true:
 
-    cd modules/statistics
-    touch enable
+```
+    'module.enable' => [
+         'statistics' => true,
+         …
+    ],
+```
 
 Then take the configuration template:
 
