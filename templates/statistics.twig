@@ -23,7 +23,7 @@
             <td>
                 <form action="#">
                     {% for key, value in post_rule %}
-                    <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
                     {% endfor %}
                     <select name="rule">
                     {% for key, rule in available_rules %}
@@ -39,7 +39,7 @@
             <td class="td_right">
                 <form action="#">
                     {% for key, value in post_d %}
-                    <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
                     {% endfor %}
                     {% if availdelimiters %}
                     <select name="d">
@@ -53,9 +53,9 @@
                         {% if key == "_" %}
                         <option value="_">Total</option>
                         {% elseif request_d is defined and delim == request_d %}
-                        <option selected="selected" value="{{ delim|escape('html') }}">{{ delimName|escape('html') }}</option>
+                        <option selected="selected" value="{{ delim }}">{{ delimName }}</option>
                         {% else %}
-                        <option value="{{ delim|escape('html') }}">{{ delimName|escape('html') }}</option>
+                        <option value="{{ delim }}">{{ delimName }}</option>
                         {% endif %}
                     {% endfor %}
                     </select>
@@ -78,7 +78,7 @@
             <td class="td_right">
                 <form action="#">
                     {% for key, value in post_res %}
-                    <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
                     {% endfor %}
                     {% if available_timeres %}
                     <select name="res">
@@ -96,7 +96,7 @@
             <td class="td_left">
                 <form action="#">
                     {% for key, value in post_time %}
-                    <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
                     {% endfor %}
                     {% if available_times %}
                     <select name="time">
@@ -219,7 +219,7 @@
         </div>
     {% else %}
         <h4 align="center">{{ error }}</h4>
-        <p align="center"><a href="showstats.php">Clear selection</a></p>
+        <p align="center"><a href="{{ moduleURL('statistics/') }}">Clear selection</a></p>
     {% endif %}
     </div>
 {% endblock %}
