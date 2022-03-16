@@ -20,14 +20,14 @@ function statistics_hook_cron(array &$croninfo): void
 
     $statconfig = Configuration::getConfig('module_statistics.php');
 
-    if (is_null($statconfig->getValue('cron_tag', null))) {
+    if (is_null($statconfig->getOptionalValue('cron_tag', null))) {
         return;
     }
-    if ($statconfig->getValue('cron_tag', null) !== $croninfo['tag']) {
+    if ($statconfig->getOptionalValue('cron_tag', null) !== $croninfo['tag']) {
         return;
     }
 
-    $maxtime = $statconfig->getInteger('time_limit', null);
+    $maxtime = $statconfig->getOptionalInteger('time_limit', null);
     if ($maxtime) {
         set_time_limit($maxtime);
     }

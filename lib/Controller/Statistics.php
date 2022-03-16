@@ -171,8 +171,8 @@ class Statistics
             }
         }
 
-        $dimx = $this->moduleConfig->getValue('dimension.x', 800);
-        $dimy = $this->moduleConfig->getValue('dimension.y', 350);
+        $dimx = $this->moduleConfig->getOptionalValue('dimension.x', 800);
+        $dimy = $this->moduleConfig->getOptionalValue('dimension.y', 350);
         $grapher = new Graph\GoogleCharts($dimx, $dimy);
         $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 

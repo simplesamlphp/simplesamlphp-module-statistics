@@ -26,12 +26,12 @@ class AccessCheck
      */
     public static function checkAccess(Configuration $statconfig): void
     {
-        $protected = $statconfig->getBoolean('protected', false);
-        $authsource = $statconfig->getString('auth', null);
-        $allowedusers = $statconfig->getValue('allowedUsers', null);
-        $useridattr = $statconfig->getString('useridattr', 'eduPersonPrincipalName');
+        $protected = $statconfig->getOptionalBoolean('protected', false);
+        $authsource = $statconfig->getOptionalString('auth', null);
+        $allowedusers = $statconfig->getOptionalValue('allowedUsers', null);
+        $useridattr = $statconfig->getOptionalString('useridattr', 'eduPersonPrincipalName');
 
-        $acl = $statconfig->getValue('acl', null);
+        $acl = $statconfig->getOptionalValue('acl', null);
         if ($acl !== null && !is_string($acl) && !is_array($acl)) {
             throw new Error\Exception('Invalid value for \'acl\'-option. Should be an array or a string.');
         }

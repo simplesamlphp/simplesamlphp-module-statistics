@@ -104,7 +104,7 @@ class Ruleset
      */
     private function resolveSelectedRule(string $preferRule = null): ?string
     {
-        $rule = $this->statconfig->getString('default', $this->availrules[0]);
+        $rule = $this->statconfig->getOptionalString('default', $this->availrules[0]);
         if (!empty($preferRule)) {
             if (in_array($preferRule, $this->availrules, true)) {
                 $rule = $preferRule;
@@ -125,7 +125,7 @@ class Ruleset
         $statruleConfig = $statrulesConfig->getConfigItem($rule);
 
         $presenterClass = Module::resolveClass(
-            $statruleConfig->getValue('presenter', 'statistics:BaseRule'),
+            $statruleConfig->getOptionalValue('presenter', 'statistics:BaseRule'),
             'Statistics\Rulesets'
         );
 

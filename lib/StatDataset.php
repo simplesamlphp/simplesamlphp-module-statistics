@@ -89,8 +89,8 @@ class StatDataset
         $this->results = [];
         $this->summary = [];
 
-        $this->datehandlerTick = new DateHandler($this->statconfig->getValue('offset', 0));
-        if ($this->timeresconfig->getValue('customDateHandler', 'default') === 'month') {
+        $this->datehandlerTick = new DateHandler($this->statconfig->getOptionalValue('offset', 0));
+        if ($this->timeresconfig->getOptionalValue('customDateHandler', 'default') === 'month') {
             $this->datehandlerFile = new DateHandlerMonth(0);
         } else {
             $this->datehandlerFile = $this->datehandlerTick;

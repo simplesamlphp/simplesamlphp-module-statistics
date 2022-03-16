@@ -52,7 +52,7 @@ class Aggregator
         $this->inputfile = $this->statconfig->getValue('inputfile');
         $this->statrules = $this->statconfig->getValue('statrules');
         $this->timeres = $this->statconfig->getValue('timeres');
-        $this->offset = $this->statconfig->getValue('offset', 0);
+        $this->offset = $this->statconfig->getOptionalValue('offset', 0);
 
         $this->starttime = time();
     }
@@ -136,9 +136,9 @@ class Aggregator
         }
 
         $logparser = new LogParser(
-            $this->statconfig->getValue('datestart', 0),
-            $this->statconfig->getValue('datelength', 15),
-            $this->statconfig->getValue('offsetspan', 44)
+            $this->statconfig->getOptionalValue('datestart', 0),
+            $this->statconfig->getOptionalValue('datelength', 15),
+            $this->statconfig->getOptionalValue('offsetspan', 44)
         );
         $datehandler = [
             'default' => new DateHandler($this->offset),
@@ -183,7 +183,7 @@ class Aggregator
             if ($debug) {
                 echo "----------------------------------------\n";
                 echo 'Log line: ' . $logline . "\n";
-                echo 'Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) .
+                echo 'Date parse [' . substr($logline, 0, $this->statconfig->getOptionalValue('datelength', 15)) .
                     '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n";
                 $ret = print_r($content, true);
                 echo htmlentities($ret);

@@ -83,7 +83,7 @@ class BaseRule
         if (isset($timeresConfig['customDateHandler']) && $timeresConfig['customDateHandler'] == 'month') {
             $datehandler = new DateHandlerMonth(0);
         } else {
-            $datehandler = new DateHandler($this->statconfig->getValue('offset', 0));
+            $datehandler = new DateHandler($this->statconfig->getOptionalValue('offset', 0));
         }
 
         /*
