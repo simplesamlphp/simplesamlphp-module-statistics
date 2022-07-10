@@ -141,7 +141,7 @@ $config = [
         ],
         'slo' => [
             'name'         => 'SLO initiated from service',
-            'descr'        => 'The number of initated Sinlge Logout from each of the service providers.',
+            'descr'        => 'The number of initiated Single Logout from each of the service providers.',
             'action'       => 'saml20-idp-SLO',
             'col'          => 7, // Service Provider EntityID that initiated the logout.
             'fieldPresentation' => [
@@ -151,7 +151,7 @@ $config = [
         ],
         'consent' => [
             'name'         => 'Consent',
-            'descr'        => 'Consent statistics. Everytime a user logs in to a service an entry is logged for' .
+            'descr'        => 'Consent statistics. Every time a user logs in to a service an entry is logged for' .
                 ' one of three states: consent was found, consent was not found or consent storage was not available.',
             'action'       => 'consent',
             'col'          => 6,
@@ -162,7 +162,7 @@ $config = [
         ],
         'consentresponse' => [
             'name'         => 'Consent response',
-            'descr'        => 'Consent response statistics. Everytime a user accepts consent,' .
+            'descr'        => 'Consent response statistics. Every time a user accepts consent,' .
                 ' it is logged whether the user selected to remember the consent to next time.',
             'action'       => 'consentResponse',
             'col'          => 6,
