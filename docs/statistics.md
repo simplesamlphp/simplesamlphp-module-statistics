@@ -143,9 +143,11 @@ In the debug output, please verify four things:
 
 You also should setup the cron module:
 
-```bash
-cd modules/cron
-touch enable
+```php
+'module.enable' => [
+    'cron' => true,
+    …
+],
 ```
 
 ### Alternative to using the cron module
