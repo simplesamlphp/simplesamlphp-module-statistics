@@ -10,7 +10,8 @@ $baseDir = dirname(__FILE__, 4);
 require_once($baseDir . '/lib/_autoload.php');
 
 // Initialize the configuration.
-$configdir = \SimpleSAML\Utils\Config::getConfigDir();
+$configUtils = new \SimpleSAML\Utils\Config();
+$configdir = $configUtils->getConfigDir();
 \SimpleSAML\Configuration::setConfigDir($configdir);
 
 $progName = array_shift($argv);
