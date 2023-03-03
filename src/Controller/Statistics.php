@@ -124,6 +124,8 @@ class Statistics
         $t->data['post_rule'] = $this->getBaseURL($t, 'post', 'rule');
         $t->data['post_res'] = $this->getBaseURL($t, 'post', 'res');
         $t->data['post_time'] = $this->getBaseURL($t, 'post', 'time');
+        $t->data['available_timeres'] = [];;
+        $t->data['available_times'] = [];;
 
         if (isset($preferRule2)) {
             $statrule = $ruleset->getRule($preferRule2);
