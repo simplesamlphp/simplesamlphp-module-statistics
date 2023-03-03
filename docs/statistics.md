@@ -200,7 +200,7 @@ Stack trace:
   thrown in /var/simplesamlphp/vendor/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/CriticalConfigurationError.php on line 84
 ```
 
-It means that the script doesnt' find the `config.php` under the main SimpleSAMLphp directory.
+It means that the script doesn't find the `config.php` under the main SimpleSAMLphp directory.
 
 (Probably you've installed SimpleSAMLphp as a composer dependency)
 
