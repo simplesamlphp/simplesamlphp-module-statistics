@@ -191,13 +191,7 @@ If the execution of the script `loganalyzer.php` generates the error:
 
 ```bash
 # php loganalyzer.php --debug
-PHP Fatal error:  Uncaught SimpleSAML\Error\CriticalConfigurationError: The configuration (config/config.php) is invalid: Missing configuration file in /var/simplesamlphp/vendor/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/CriticalConfigurationError.php:84
-Stack trace:
-#0 /var/simplesamlphp/vendor/simplesamlphp/simplesamlphp/src/SimpleSAML/Configuration.php(348): SimpleSAML\Error\CriticalConfigurationError::fromException()
-#1 /var/simplesamlphp/vendor/simplesamlphp/simplesamlphp/src/SimpleSAML/Utils/Time.php(57): SimpleSAML\Configuration::getInstance()
-#2 /var/simplesamlphp/vendor/simplesamlphp/simplesamlphp/modules/statistics/bin/loganalyzer.php(17): SimpleSAML\Utils\Time->initTimezone()
-#3 {main}
-  thrown in /var/simplesamlphp/vendor/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/CriticalConfigurationError.php on line 84
+PHP Fatal error:  Uncaught SimpleSAML\Error\CriticalConfigurationError: The configuration (config/config.php) is invalid: Missing configuration file
 ```
 
 It means that the script doesn't find the `config.php` under the main SimpleSAMLphp directory.
