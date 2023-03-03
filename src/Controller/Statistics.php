@@ -118,11 +118,18 @@ class Statistics
             'selected_rule' => $rule,
             'selected_rule2' => $preferRule2,
         ];
+
         $t->data['available_rules'] = $ruleset->availableRulesNames();
         $t->data['current_rule'] = $t->data['available_rules'][$rule];
         $t->data['post_rule'] = $this->getBaseURL($t, 'post', 'rule');
         $t->data['post_res'] = $this->getBaseURL($t, 'post', 'res');
         $t->data['post_time'] = $this->getBaseURL($t, 'post', 'time');
+
+        if (isset($preferRule2)) {
+            $statrule = $ruleset->getRule($preferRule2);
+            $t->data['available_timeres'] = $statrule->availableTimeRes();
+            $t->data['available_times'] = $statrule->availableFileSlots($timeres);
+        }
 
         try {
             $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
@@ -161,10 +168,6 @@ class Statistics
         $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 
         if (isset($preferRule2)) {
-            $statrule = $ruleset->getRule($preferRule2);
-            $t->data['available_timeres'] = $statrule->availableTimeRes();
-            $t->data['available_times'] = $statrule->availableFileSlots($timeres);
-
             try {
                 $dataset2 = $statrule->getDataset($preferTimeRes, $preferTime);
                 $dataset2->aggregateSummary();
@@ -236,7 +239,7 @@ class Statistics
             }
         }
         if ($type === 'get') {
-            return Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&');
+            return Module::getModuleURL("statistics/") . '?' . http_build_query($vars, '', '&');
         }
         return $vars;
     }
