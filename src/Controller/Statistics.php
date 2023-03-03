@@ -118,6 +118,11 @@ class Statistics
             'selected_rule' => $rule,
             'selected_rule2' => $preferRule2,
         ];
+        $t->data['available_rules'] = $ruleset->availableRulesNames();
+        $t->data['current_rule'] = $t->data['available_rules'][$rule];
+        $t->data['post_rule'] = $this->getBaseURL($t, 'post', 'rule');
+        $t->data['post_res'] = $this->getBaseURL($t, 'post', 'res');
+        $t->data['post_time'] = $this->getBaseURL($t, 'post', 'time');
 
         try {
             $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
@@ -138,12 +143,28 @@ class Statistics
         $axis = $dataset->getAxis();
         $maxes = [$dataset->getMax()];
 
+        $t->data['results'] = $dataset->getResults();
+        $t->data['summaryDataset'] = $dataset->getSummary();
+        $t->data['debugdata'] = $dataset->getDebugData();
+        $t->data['topdelimiters'] = $dataset->getTopDelimiters();
+        $t->data['availdelimiters'] = $dataset->availDelimiters();
+        $t->data['available_times_prev'] = $timeNavigation['prev'];
+        $t->data['available_times_next'] = $timeNavigation['next'];
         $t->data['selected_rule'] = $rule;
         $t->data['selected_time'] = $fileslot;
         $t->data['selected_timeres'] = $timeres;
         $t->data['post_d'] = $this->getBaseURL($t, 'post', 'd');
+
+        $dimx = $this->moduleConfig->getOptionalValue('dimension.x', 800);
+        $dimy = $this->moduleConfig->getOptionalValue('dimension.y', 350);
+        $grapher = new Graph\GoogleCharts($dimx, $dimy);
+        $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
+
         if (isset($preferRule2)) {
             $statrule = $ruleset->getRule($preferRule2);
+            $t->data['available_timeres'] = $statrule->availableTimeRes();
+            $t->data['available_times'] = $statrule->availableFileSlots($timeres);
+
             try {
                 $dataset2 = $statrule->getDataset($preferTimeRes, $preferTime);
                 $dataset2->aggregateSummary();
@@ -171,34 +192,15 @@ class Statistics
             }
         }
 
-        $dimx = $this->moduleConfig->getOptionalValue('dimension.x', 800);
-        $dimy = $this->moduleConfig->getOptionalValue('dimension.y', 350);
-        $grapher = new Graph\GoogleCharts($dimx, $dimy);
-        $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
-
         if (!empty($piedata)) {
             $t->data['pieimgurl'] = $grapher->showPie($dataset->getDelimiterPresentationPie(), $piedata);
         }
 
-        $t->data['available_rules'] = $ruleset->availableRulesNames();
-        $t->data['available_times'] = $statrule->availableFileSlots($timeres);
-        $t->data['available_timeres'] = $statrule->availableTimeRes();
-        $t->data['available_times_prev'] = $timeNavigation['prev'];
-        $t->data['available_times_next'] = $timeNavigation['next'];
-        $t->data['current_rule'] = $t->data['available_rules'][$rule];
         $t->data['selected_rule2'] = $preferRule2;
         $t->data['selected_delimiter'] = $delimiter;
-        $t->data['debugdata'] = $dataset->getDebugData();
-        $t->data['results'] = $dataset->getResults();
-        $t->data['summaryDataset'] = $dataset->getSummary();
-        $t->data['topdelimiters'] = $dataset->getTopDelimiters();
-        $t->data['post_rule'] = $this->getBaseURL($t, 'post', 'rule');
         $t->data['post_rule2'] = $this->getBaseURL($t, 'post', 'rule2');
-        $t->data['post_res'] = $this->getBaseURL($t, 'post', 'res');
-        $t->data['post_time'] = $this->getBaseURL($t, 'post', 'time');
         $t->data['get_times_prev'] = $this->getBaseURL($t, 'get', 'time', $t->data['available_times_prev']);
         $t->data['get_times_next'] = $this->getBaseURL($t, 'get', 'time', $t->data['available_times_next']);
-        $t->data['availdelimiters'] = $dataset->availDelimiters();
         $t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 
         return $t;
