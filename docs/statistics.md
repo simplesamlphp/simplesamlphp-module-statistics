@@ -210,7 +210,6 @@ The problem can be solved easily by setting the following environment variable t
 export SIMPLESAMLPHP_CONFIG_DIR=/var/simplesamlphp/config/
 ```
 
-
 ### Support
 
 If you need help to make this work, or want to discuss SimpleSAMLphp with other
