@@ -64,11 +64,11 @@ class LogCleaner
     public function clean(bool $debug = false): array
     {
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new Exception('Statistics module: output dir does not exist [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new Exception('Statistics module: input file does not exist [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
