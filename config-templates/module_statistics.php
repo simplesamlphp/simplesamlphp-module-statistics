@@ -22,7 +22,7 @@ $config = [
 
     'default' => 'sso',
 
-    'statdir' => '/tmp/stats/',
+    'statdir' => '/var/simplesamlphp/stats/',
     'inputfile' => '/var/log/simplesamlphp.stat',
     'offset' => 60 * 60 * 2 + 60 * 60 * 24 * 3, // Two hours offset to match epoch and norwegian winter time.
 
