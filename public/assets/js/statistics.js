@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Render tabs
     $("#tabdiv").tabs();
-    $('ul.tabset_tabs li').click(
+    $('ul.tabset-tabs li').click(
         function () {
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     // Add listeners to dropdowns
     $('select').change(
-         function() {
+        function() {
             $(this).parents("form").submit();
         }
     );

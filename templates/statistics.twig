@@ -18,7 +18,7 @@
 
     <table class="selecttime">
         <tr>
-            <td class="selecttime_icon">
+            <td class="selecttime-icon">
                 <i class="fa fa-pie-chart"></i>
             </td>
             <td>
@@ -37,7 +37,7 @@
                     </select>
                 </form>
             </td>
-            <td class="td_right">
+            <td class="td-right">
                 <form action="#">
                     {% for key, value in post_d %}
                     <input type="hidden" name="{{ key }}" value="{{ value }}">
@@ -68,15 +68,15 @@
 
     <table class="selecttime">
         <tr>
-            <td class="selecttime_icon">
+            <td class="selecttime-icon">
                 <i class="fa fa-calendar"></i>
             </td>
             {% if available_times_prev %}
             <td><a href="{{ get_times_prev }}">&laquo; Previous</a></td>
             {% else %}
-            <td class="selecttime_link_grey">&laquo; Previous</td>
+            <td class="selecttime-link-grey">&laquo; Previous</td>
             {% endif %}
-            <td class="td_right">
+            <td class="td-right">
                 <form action="#">
                     {% for key, value in post_res %}
                     <input type="hidden" name="{{ key }}" value="{{ value }}">
@@ -94,7 +94,7 @@
                     {% endif %}
                 </form>
             </td>
-            <td class="td_left">
+            <td class="td-left">
                 <form action="#">
                     {% for key, value in post_time %}
                     <input type="hidden" name="{{ key }}" value="{{ value }}">
@@ -113,25 +113,25 @@
                 </form>
             </td>
             {% if available_times_next %}
-                <td class="td_right td_next_right"><a href="{{ get_times_next }}">Next &raquo;</a></td>
+                <td class="td-right td-next-right"><a href="{{ get_times_next }}">Next &raquo;</a></td>
             {% else %}
-                <td class="td_right selecttime_link_grey">Next &raquo;</td>
+                <td class="td-right selecttime-link-grey">Next &raquo;</td>
             {% endif %}
         </tr>
     </table>
 
     <div id="tabdiv">
     {% if results %}
-        <ul class="tabset_tabs">
+        <ul class="tabset-tabs">
             <li class="tab-link current" data-tab="graph"><a href="#graph">Graph</a></li>
             <li class="tab-link" data-tab="table"><a href="#table">Summary table</a></li>
             <li class="tab-link" data-tab="debug"><a href="#debug">Time series</a></li>
         </ul>
 
-        <div id="graph" class="tabset_content current">
+        <div id="graph" class="tabset-content current">
             <img src="{{ imgurl }}" alt="Graph" />
             <form action="#">
-                <p class="p_right">Compare with total from this dataset
+                <p class="p-right">Compare with total from this dataset
                 <select name="rule2">
                     <option value="_">None</option>
                     {% for key, rule in available_rules %}
@@ -146,7 +146,7 @@
             </form>
         </div>
 
-        <div id="table" class="tabset_content">
+        <div id="table" class="tabset-content">
             {% if pieimgurl is defined %}
             <img src="{{ pieimgurl }}" alt="Pie chart" />
             {% endif %}
@@ -183,7 +183,7 @@
             </table>
         </div>
 
-        <div id="debug" class="tabset_content">
+        <div id="debug" class="tabset-content">
             <table class="timeseries">
                 <tr>
                     <th>Time</th>
