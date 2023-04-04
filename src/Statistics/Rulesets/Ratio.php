@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\statistics\Statistics\Rulesets;
 
 use SimpleSAML\Configuration;
