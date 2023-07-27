@@ -34,7 +34,7 @@
         "php": "^8.0",
 
         "simplesamlphp/assert": "^1.0.0",
-        "simplesamlphp/simplesamlphp": "*",
+        "simplesamlphp/simplesamlphp": "^3@dev",
         "symfony/http-foundation": "^5.4||^6"
     },
     "require-dev": {
