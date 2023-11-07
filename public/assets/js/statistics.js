@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     // Add listeners to dropdowns
     $('select').change(
-        function() {
+        function () {
             $(this).parents("form").submit();
         }
     );
