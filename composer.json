@@ -33,12 +33,12 @@
     "require": {
         "php": "^8.0",
 
-        "simplesamlphp/assert": "^1.0.0",
-        "simplesamlphp/simplesamlphp": "^3@dev",
-        "symfony/http-foundation": "^5.4||^6"
+        "simplesamlphp/assert": "^1.0.4",
+        "simplesamlphp/simplesamlphp": "^2.1",
+        "symfony/http-foundation": "^6"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "^1.5.4"
+        "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-module-statistics/issues",
