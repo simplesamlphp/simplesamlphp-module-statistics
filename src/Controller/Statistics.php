@@ -6,8 +6,6 @@ namespace SimpleSAML\Module\statistics\Controller;
 
 use Exception;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\Module\statistics\AccessCheck;
 use SimpleSAML\Module\statistics\Aggregator;
