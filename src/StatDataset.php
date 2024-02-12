@@ -27,8 +27,8 @@ class StatDataset
     /** @var array */
     protected array $ruleid;
 
-    /** @var int */
-    protected int $fileslot;
+    /** @var string */
+    protected string $fileslot;
 
     /** @var string */
     protected string $timeres;
@@ -59,14 +59,14 @@ class StatDataset
      * @param \SimpleSAML\Configuration $ruleconfig
      * @param array $ruleid
      * @param string $timeres
-     * @param int $fileslot
+     * @param string $fileslot
      */
     public function __construct(
         Configuration $statconfig,
         Configuration $ruleconfig,
         array $ruleid,
         string $timeres,
-        int $fileslot
+        string $fileslot
     ) {
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
@@ -103,9 +103,9 @@ class StatDataset
 
 
     /**
-     * @return int
+     * @return string
      */
-    public function getFileSlot(): int
+    public function getFileSlot(): string
     {
         return $this->fileslot;
     }

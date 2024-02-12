@@ -18,14 +18,14 @@ class RatioDataset extends StatDataset
      * @param \SimpleSAML\Configuration $ruleconfig
      * @param array $ruleid
      * @param string $timeres
-     * @param int $fileslot
+     * @param string $fileslot
      */
     public function __construct(
         Configuration $statconfig,
         Configuration $ruleconfig,
         array $ruleid,
         string $timeres,
-        int $fileslot
+        string $fileslot
     ) {
         parent::__construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot);
     }
