@@ -37,10 +37,10 @@ class LogCleaner
     {
         $this->statconfig = Configuration::getConfig('module_statistics.php');
 
-        $this->statdir = $this->statconfig->getValue('statdir');
-        $this->inputfile = $this->statconfig->getValue('inputfile');
+        $this->statdir = $this->statconfig->getString('statdir');
+        $this->inputfile = $this->statconfig->getString('inputfile');
         $this->statrules = $this->statconfig->getValue('statrules');
-        $this->offset = $this->statconfig->getOptionalValue('offset', 0);
+        $this->offset = $this->statconfig->getOptionalInteger('offset', 0);
 
         if (isset($inputfile)) {
             $this->inputfile = $inputfile;
