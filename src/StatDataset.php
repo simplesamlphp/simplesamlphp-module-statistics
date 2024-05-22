@@ -172,7 +172,7 @@ class StatDataset
         foreach ($this->results as $slot => &$res) {
             $debugdata[$slot] = [
                 $this->datehandlerTick->prettyDateSlot($slot, $slotsize, $dateformat_intra),
-                $res[$this->delimiter]
+                $res[$this->delimiter],
             ];
         }
         return $debugdata;
