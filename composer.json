@@ -36,7 +36,7 @@
 
         "simplesamlphp/assert": "^1.0.4",
         "simplesamlphp/simplesamlphp": "^2.1",
-        "symfony/http-foundation": "^6"
+        "symfony/http-foundation": "^7"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
