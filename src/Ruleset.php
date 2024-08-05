@@ -128,7 +128,7 @@ class Ruleset
 
         $presenterClass = Module::resolveClass(
             $statruleConfig->getOptionalValue('presenter', 'statistics:BaseRule'),
-            'Statistics\Rulesets'
+            'Statistics\Rulesets',
         );
 
         /** @psalm-suppress InvalidStringClass */

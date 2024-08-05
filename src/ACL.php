@@ -49,7 +49,7 @@ class ACL
             $action = array_shift($rule);
             if ($action !== 'allow' && $action !== 'deny') {
                 throw new Error\Exception(
-                    'Invalid action in rule in access control list: ' . var_export($action, true)
+                    'Invalid action in rule in access control list: ' . var_export($action, true),
                 );
             }
         }

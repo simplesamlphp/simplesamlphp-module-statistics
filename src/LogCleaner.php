@@ -78,7 +78,7 @@ class LogCleaner
         $logparser = new LogParser(
             $this->statconfig->getOptionalValue('datestart', 0),
             $this->statconfig->getOptionalValue('datelength', 15),
-            $this->statconfig->getOptionalValue('offsetspan', 44)
+            $this->statconfig->getOptionalValue('offsetspan', 44),
         );
 
         $sessioncounter = [];
@@ -171,7 +171,7 @@ class LogCleaner
         $logparser = new LogParser(
             $this->statconfig->getOptionalValue('datestart', 0),
             $this->statconfig->getOptionalValue('datelength', 15),
-            $this->statconfig->getOptionalValue('offsetspan', 44)
+            $this->statconfig->getOptionalValue('offsetspan', 44),
         );
 
         $i = 0;

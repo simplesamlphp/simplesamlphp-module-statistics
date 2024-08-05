@@ -25,7 +25,7 @@ class RatioDataset extends StatDataset
         Configuration $ruleconfig,
         array $ruleid,
         string $timeres,
-        string $fileslot
+        string $fileslot,
     ) {
         parent::__construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot);
     }
@@ -109,7 +109,7 @@ class RatioDataset extends StatDataset
             foreach ($val as $index => $num) {
                 $combined[$tick][$index] = $this->divide(
                     $this->ag($index, $result1[$tick]),
-                    $this->ag($index, $result2[$tick])
+                    $this->ag($index, $result2[$tick]),
                 );
             }
         }

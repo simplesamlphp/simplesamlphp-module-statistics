@@ -140,7 +140,7 @@ class Aggregator
         $logparser = new LogParser(
             $this->statconfig->getOptionalValue('datestart', 0),
             $this->statconfig->getOptionalValue('datelength', 15),
-            $this->statconfig->getOptionalValue('offsetspan', 44)
+            $this->statconfig->getOptionalValue('offsetspan', 44),
         );
         $datehandler = [
             'default' => new DateHandler($this->offset),
@@ -336,11 +336,11 @@ class Aggregator
                     // Get start and end slot number within the file, based on the fileslot.
                     $start = $datehandler['default']->toSlot(
                         $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']),
-                        $this->timeres[$tres]['slot']
+                        $this->timeres[$tres]['slot'],
                     );
                     $end = $datehandler['default']->toSlot(
                         $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']),
-                        $this->timeres[$tres]['slot']
+                        $this->timeres[$tres]['slot'],
                     );
 
                     // Fill in missing entries and sort file results

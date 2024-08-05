@@ -120,7 +120,7 @@ class Ratio extends BaseRule
             $this->ruleconfig,
             $refNames,
             $timeres,
-            $fileslot
+            $fileslot,
         );
         return $dataset;
     }

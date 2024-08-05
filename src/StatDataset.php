@@ -66,7 +66,7 @@ class StatDataset
         Configuration $ruleconfig,
         array $ruleid,
         string $timeres,
-        string $fileslot
+        string $fileslot,
     ) {
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
@@ -356,7 +356,7 @@ class StatDataset
             }
             $classname = Module::resolveClass(
                 $fieldpresConfig->getValue('class'),
-                'Statistics\FieldPresentation'
+                'Statistics\FieldPresentation',
             );
             if (!class_exists($classname)) {
                 throw new Exception('Could not find field presentation plugin [' . $classname . ']: No class found');

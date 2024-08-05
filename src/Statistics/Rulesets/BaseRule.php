@@ -97,7 +97,7 @@ class BaseRule
                 $slot,
                 $slot + 1,
                 $timeresConfig['fileslot'],
-                $timeresConfig['dateformat-period']
+                $timeresConfig['dateformat-period'],
             );
         }
         return $available_times;
@@ -180,7 +180,7 @@ class BaseRule
             $this->ruleconfig,
             $arrayUtils->arrayize($this->ruleid),
             $timeres,
-            $fileslot
+            $fileslot,
         );
         return $dataset;
     }
