@@ -33,14 +33,14 @@
         }
     },
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
 
-        "simplesamlphp/assert": "^1.0.4",
-        "simplesamlphp/simplesamlphp": "^2.1",
-        "symfony/http-foundation": "^6"
+        "simplesamlphp/assert": "^1.2.0",
+        "simplesamlphp/simplesamlphp": "^2.2",
+        "symfony/http-foundation": "^6.4"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
+        "simplesamlphp/simplesamlphp-test-framework": "^1.7.9"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-module-statistics/issues",
