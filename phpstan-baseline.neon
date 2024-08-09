@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property SimpleSAML\\\\Module\\\\statistics\\\\LogCleaner\\:\\:\\$statrules is never read, only written\\.$#"
+			count: 1
+			path: src/LogCleaner.php
+
+		-
+			message: "#^Property SimpleSAML\\\\Module\\\\statistics\\\\LogParser\\:\\:\\$datestart is never read, only written\\.$#"
+			count: 1
+			path: src/LogParser.php
+
+		-
+			message: "#^Parameter \\#5 \\$fileslot of class SimpleSAML\\\\Module\\\\statistics\\\\StatDataset constructor expects string, int given\\.$#"
+			count: 1
+			path: src/Statistics/Rulesets/BaseRule.php
+
+		-
+			message: "#^Parameter \\#5 \\$fileslot of class SimpleSAML\\\\Module\\\\statistics\\\\RatioDataset constructor expects string, int given\\.$#"
+			count: 1
+			path: src/Statistics/Rulesets/Ratio.php

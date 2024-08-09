@@ -71,12 +71,12 @@ class StatDataset
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
 
-        $timeresconfigs = $statconfig->getConfigItem('timeres');
+        $timeresconfigs = $statconfig->getOptionalConfigItem('timeres', null);
         if ($timeresconfigs === null) {
             throw new Error\ConfigurationError('Missing \'timeres\' in module configuration.');
         }
 
-        $timeresconfig = $timeresconfigs->getConfigItem($timeres);
+        $timeresconfig = $timeresconfigs->getOptionalConfigItem($timeres, null);
         if ($timeresconfig === null) {
             throw new Error\ConfigurationError('Missing \'timeres.' . $timeres . '\' in module configuration.');
         }
@@ -350,7 +350,7 @@ class StatDataset
 
         // create a delimiter presentation filter for this rule...
         if ($this->ruleconfig->hasValue('fieldPresentation')) {
-            $fieldpresConfig = $this->ruleconfig->getConfigItem('fieldPresentation');
+            $fieldpresConfig = $this->ruleconfig->getOptionalConfigItem('fieldPresentation', null);
             if ($fieldpresConfig === null) {
                 throw new Error\ConfigurationError('Missing \'fieldPresentation\' in module configuration.');
             }

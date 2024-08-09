@@ -35,13 +35,13 @@ class Ratio extends BaseRule
 
         $refNames = $this->ruleconfig->getArray('ref');
 
-        $statrulesConfig = $this->statconfig->getConfigItem('statrules');
+        $statrulesConfig = $this->statconfig->getOptionalConfigItem('statrules', null);
         if ($statrulesConfig === null) {
             throw new Error\ConfigurationError('Missing \'statrules\' in module configuration.');
         }
 
-        $statruleConfig1 = $statrulesConfig->getConfigItem($refNames[0]);
-        $statruleConfig2 = $statrulesConfig->getConfigItem($refNames[1]);
+        $statruleConfig1 = $statrulesConfig->getOptionalConfigItem($refNames[0], null);
+        $statruleConfig2 = $statrulesConfig->getOptionalConfigItem($refNames[1], null);
 
         if ($statruleConfig1 === null || $statruleConfig2 === null) {
             throw new Error\ConfigurationError();

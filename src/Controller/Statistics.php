@@ -127,14 +127,9 @@ class Statistics
         $t->data['available_timeres'] = [];
         $t->data['available_times'] = [];
 
-        if (isset($preferRule2)) {
-            $statrule = $ruleset->getRule($preferRule2);
-            $t->data['available_timeres'] = $statrule->availableTimeRes();
-            $t->data['available_times'] = $statrule->availableFileSlots($timeres);
-        }
-
         try {
             $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
+            $delimiter = $dataset->getDelimiter();
             $dataset->setDelimiter($delimiter);
             $dataset->aggregateSummary();
             $dataset->calculateMax();
@@ -143,14 +138,20 @@ class Statistics
             return $t;
         }
 
-        $delimiter = $dataset->getDelimiter();
-        $timeres = $dataset->getTimeRes();
         $fileslot = $dataset->getFileslot();
+        $timeres = $dataset->getTimeRes();
         $timeNavigation = $statrule->getTimeNavigation($timeres, $preferTime);
         $piedata = $dataset->getPieData();
         $datasets = [$dataset->getPercentValues()];
         $axis = $dataset->getAxis();
         $maxes = [$dataset->getMax()];
+
+        if (isset($preferRule2)) {
+            $statrule = $ruleset->getRule($preferRule2);
+            $t->data['available_timeres'] = $statrule->availableTimeRes();
+            $t->data['available_times'] = $statrule->availableFileSlots($timeres);
+        }
+
 
         $t->data['results'] = $dataset->getResults();
         $t->data['summaryDataset'] = $dataset->getSummary();

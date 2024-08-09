@@ -38,7 +38,7 @@ class DateHandlerMonth extends DateHandler
 
     /**
      * @param int $slot
-     * @param int| $slotsize
+     * @param int $slotsize
      * @return int
      */
     public function fromSlot(int $slot, ?int $slotsize): int

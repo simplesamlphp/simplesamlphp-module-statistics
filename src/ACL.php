@@ -29,11 +29,8 @@ class ACL
      *
      * @param array|string $acl  The access control list.
      */
-    public function __construct($acl)
+    public function __construct(array|string $acl)
     {
-        /** @psalm-suppress RedundantConditionGivenDocblockType */
-        Assert::true(is_string($acl) || is_array($acl));
-
         if (is_string($acl)) {
             $acl = self::getById($acl);
         }
