@@ -8,6 +8,15 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 
+use function array_key_exists;
+use function array_shift;
+use function in_array;
+use function is_string;
+use function preg_grep;
+use function preg_match;
+use function sprintf;
+use function var_export;
+
 /**
  * Generic library for access control lists.
  *
@@ -36,19 +45,21 @@ class ACL
         }
 
         foreach ($acl as $rule) {
-            if (!is_array($rule)) {
-                throw new Error\Exception('Invalid rule in access control list: ' . var_export($rule, true));
-            }
-            if (count($rule) === 0) {
-                throw new Error\Exception('Empty rule in access control list.');
-            }
+            Assert::isArray(
+                $rule,
+                sprintf('Invalid rule in access control list: %s', var_export($rule, true)),
+                Error\Exception::class,
+            );
+
+            Assert::minCount($rule, 1, 'Empty rule in access control list.', Error\Exception::class);
 
             $action = array_shift($rule);
-            if ($action !== 'allow' && $action !== 'deny') {
-                throw new Error\Exception(
-                    'Invalid action in rule in access control list: ' . var_export($action, true),
-                );
-            }
+            Assert::oneOf(
+                $action,
+                ['allow', 'deny'],
+                sprintf('Invalid action in rule in access control list: %s', var_export($action, true)),
+                Error\Exception::class,
+            );
         }
         $this->acl = $acl;
     }
