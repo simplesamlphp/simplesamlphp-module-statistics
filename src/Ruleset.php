@@ -104,7 +104,7 @@ class Ruleset
      * @param string|null $preferRule
      * @return string|null
      */
-    private function resolveSelectedRule(string $preferRule = null): ?string
+    private function resolveSelectedRule(?string $preferRule = null): ?string
     {
         $rule = $this->statconfig->getOptionalString('default', $this->availrules[0]);
         if (!empty($preferRule)) {
@@ -120,7 +120,7 @@ class Ruleset
      * @param string|null $preferRule
      * @return \SimpleSAML\Module\statistics\Statistics\Rulesets\BaseRule
      */
-    public function getRule(string $preferRule = null): BaseRule
+    public function getRule(?string $preferRule = null): BaseRule
     {
         $rule = $this->resolveSelectedRule($preferRule);
         $statrulesConfig = $this->statconfig->getConfigItem('statrules');

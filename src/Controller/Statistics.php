@@ -220,7 +220,7 @@ class Statistics
      * @param string|null $value
      * @return string|array
      */
-    private function getBaseURL(Template $t, string $type = 'get', string $key = null, string $value = null)
+    private function getBaseURL(Template $t, string $type = 'get', ?string $key = null, ?string $value = null)
     {
         $vars = [
             'rule' => $t->data['selected_rule'],

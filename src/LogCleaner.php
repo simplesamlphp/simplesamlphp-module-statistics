@@ -33,7 +33,7 @@ class LogCleaner
      *
      * @param string|null $inputfile
      */
-    public function __construct(string $inputfile = null)
+    public function __construct(?string $inputfile = null)
     {
         $this->statconfig = Configuration::getConfig('module_statistics.php');
 
