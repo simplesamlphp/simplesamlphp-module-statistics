@@ -2,13 +2,13 @@
 {% extends "base.twig" %}
 
 {% block preload %}
+    <link rel="stylesheet" media="screen" href="{{ asset('css/jquery-ui.min.css', 'jquery') }}">
     <link href="{{ asset('css/statistics.css', 'statistics') }}" rel="stylesheet">
-    <link rel="stylesheet" media="screen" href="{{ asset('jquery/css/jquery-ui.min.css') }}">
 {% endblock %}
 
 {% block postload %}
-<script src="{{ asset('jquery/js/jquery.min.js') }}"></script>
-<script src="{{ asset('jquery/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js', 'jquery') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js', 'jquery') }}"></script>
 <script src="{{ asset('js/statistics.js', 'statistics') }}"></script>
 {% endblock %}
 

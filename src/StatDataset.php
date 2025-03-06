@@ -121,9 +121,9 @@ class StatDataset
 
 
     /**
-     * @param string $delimiter
+     * @param string|null $delimiter
      */
-    public function setDelimiter(string $delimiter = '_'): void
+    public function setDelimiter(?string $delimiter = '_'): void
     {
         if (empty($delimiter)) {
             $delimiter = '_';

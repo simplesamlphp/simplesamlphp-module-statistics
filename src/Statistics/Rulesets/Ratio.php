@@ -84,9 +84,9 @@ class Ratio extends BaseRule
     /**
      * @param string $timeres
      * @param string $preferTime
-     * @return int
+     * @return string
      */
-    protected function resolveFileSlot($timeres, $preferTime): int
+    protected function resolveFileSlot($timeres, $preferTime): string
     {
         return $this->refrule1->resolveFileSlot($timeres, $preferTime);
     }
