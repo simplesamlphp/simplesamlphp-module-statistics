@@ -1,3 +1,5 @@
+/*eslint no-undef: "off"*/
+
 $(document).ready(function () {
     // Render tabs
     $("#tabdiv").tabs();
