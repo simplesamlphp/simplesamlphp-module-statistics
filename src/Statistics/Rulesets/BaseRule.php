@@ -124,9 +124,9 @@ class BaseRule
     /**
      * @param string $timeres
      * @param string $preferTime
-     * @return int
+     * @return string
      */
-    protected function resolveFileSlot(string $timeres, string $preferTime): int
+    protected function resolveFileSlot(string $timeres, string $preferTime): string
     {
         // Get which time (fileslot) to use.. First get a default, which is the most recent one.
         $fileslot = $this->available[$timeres][count($this->available[$timeres]) - 1];
