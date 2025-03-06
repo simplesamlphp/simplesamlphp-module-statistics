@@ -38,10 +38,11 @@
 
         "simplesamlphp/assert": "^1.2.0",
         "simplesamlphp/simplesamlphp": "^2.2",
+        "simplesamlphp/simplesamlphp-assets-jquery": "~2.3.0",
         "symfony/http-foundation": "^6.4"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "^1.7.9"
+        "simplesamlphp/simplesamlphp-test-framework": "^1.8.0"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-module-statistics/issues",

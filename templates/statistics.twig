@@ -3,12 +3,12 @@
 
 {% block preload %}
     <link href="{{ asset('css/statistics.css', 'statistics') }}" rel="stylesheet">
-    <link rel="stylesheet" media="screen" href="{{ asset('css/ui-theme-1.13.2/jquery-ui.min.css', 'statistics') }}">
+    <link rel="stylesheet" media="screen" href="{{ asset('jquery/css/jquery-ui.min.css') }}">
 {% endblock %}
 
 {% block postload %}
-<script src="{{ asset('js/jquery-1.12.4.min.js', 'statistics') }}"></script>
-<script src="{{ asset('js/jquery-ui-1.13.2.min.js', 'statistics') }}"></script>
+<script src="{{ asset('jquery/js/jquery.min.js') }}"></script>
+<script src="{{ asset('jquery/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('js/statistics.js', 'statistics') }}"></script>
 {% endblock %}
 
