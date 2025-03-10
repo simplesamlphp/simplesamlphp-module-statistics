@@ -38,7 +38,7 @@
 
         "simplesamlphp/assert": "^1.2.0",
         "simplesamlphp/simplesamlphp": "^2.2",
-        "simplesamlphp/simplesamlphp-assets-jquery": "2.4.*",
+        "simplesamlphp/simplesamlphp-assets-jquery": "~2.4.0",
         "symfony/http-foundation": "^6.4"
     },
     "require-dev": {
