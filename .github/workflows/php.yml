@@ -14,7 +14,22 @@ on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
 
 jobs:
-  linter:
+  Linter:
+    name: 'Linter PHP'
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['8.1', '8.2', '8.3', '8.4']
+
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/phplinter.yml@662d96c9cbdb4c72cadc1c6f2ce264503097e9cb
+    with:
+      php-version: ${{ matrix.php-version }}
+
+  yamllinter:
+    name: 'YAML Linter'
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/yamllinter.yml@662d96c9cbdb4c72cadc1c6f2ce264503097e9cb
+
+  oldlinter:
     name: Linter
     runs-on: ['ubuntu-latest']
 
