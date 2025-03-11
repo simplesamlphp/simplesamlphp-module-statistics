@@ -14,20 +14,20 @@ on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
 
 jobs:
-  Linter:
-    name: 'Linter PHP'
+  phplinter:
+    name: 'PHP Linter'
     strategy:
       fail-fast: false
       matrix:
         php-version: ['8.1', '8.2', '8.3', '8.4']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/phplinter.yml@662d96c9cbdb4c72cadc1c6f2ce264503097e9cb
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/phplinter.yml@c77ea5e0e94623d1c243e29dbeeda99c52de14db
     with:
       php-version: ${{ matrix.php-version }}
 
   yamllinter:
     name: 'YAML Linter'
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/yamllinter.yml@662d96c9cbdb4c72cadc1c6f2ce264503097e9cb
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/yamllinter.yml@c77ea5e0e94623d1c243e29dbeeda99c52de14db
 
   oldlinter:
     name: Linter
@@ -49,7 +49,6 @@ jobs:
           VALIDATE_CSS: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_JSON: true
-          VALIDATE_YAML: true
           VALIDATE_XML: true
           VALIDATE_GITHUB_ACTIONS: true
 
@@ -152,7 +151,7 @@ jobs:
   unit-tests-linux:
     name: "Unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
     runs-on: ${{ matrix.operating-system }}
-    needs: [linter, quality, security]
+    needs: [phplinter, yamllinter, quality, security]
     strategy:
       fail-fast: false
       matrix:
@@ -214,7 +213,7 @@ jobs:
   unit-tests-windows:
     name: "Unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
     runs-on: ${{ matrix.operating-system }}
-    needs: [linter, quality, security]
+    needs: [phplinter, yamllinter, quality, security]
     strategy:
       fail-fast: true
       matrix:
