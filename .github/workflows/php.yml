@@ -29,6 +29,14 @@ jobs:
     name: 'YAML Linter'
     uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/yamllinter.yml@c77ea5e0e94623d1c243e29dbeeda99c52de14db
 
+  jsonlinter:
+    name: 'JSON Linter'
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/jsonlinter.yml@764128e261163aa4ce17c95128caea9a45739056
+
+  eslinter:
+    name: 'ECMAScript Linter'
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/eslinter.yml@764128e261163aa4ce17c95128caea9a45739056
+
   oldlinter:
     name: Linter
     runs-on: ['ubuntu-latest']
