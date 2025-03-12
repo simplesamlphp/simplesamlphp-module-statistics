@@ -45,7 +45,7 @@ jobs:
 
   xmllinter:
     name: 'XML Linter'
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/xmllinter.yml@deb09c9b667d1045586088f7e21e38b7a6c7ec1e
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/xmllinter.yml@1e1875c76a64387ad2a5d9cb9010dd55b74f27ca
 
   oldlinter:
     name: Linter
