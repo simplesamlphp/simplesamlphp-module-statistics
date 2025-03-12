@@ -21,27 +21,27 @@ jobs:
       matrix:
         php-version: ['8.1', '8.2', '8.3', '8.4']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/phplinter.yml@21adfb765fcee075f99b03fef77638819fbd019b
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/phplinter.yml@994c3acc1b3162bd020d758fa0d80758dc28470a
     with:
       php-version: ${{ matrix.php-version }}
 
   yamllinter:
     name: 'YAML Linter'
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/yamllinter.yml@21adfb765fcee075f99b03fef77638819fbd019b
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/yamllinter.yml@994c3acc1b3162bd020d758fa0d80758dc28470a
     with:
       config_file: 'tools/linters/.yaml-lint.yml'
 
   jsonlinter:
     name: 'JSON Linter'
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/jsonlinter.yml@21adfb765fcee075f99b03fef77638819fbd019b
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/jsonlinter.yml@994c3acc1b3162bd020d758fa0d80758dc28470a
 
   eslinter:
     name: 'JavaScript Linter'
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/eslinter.yml@21adfb765fcee075f99b03fef77638819fbd019b
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/eslinter.yml@994c3acc1b3162bd020d758fa0d80758dc28470a
 
   stylelinter:
     name: 'Stylesheet Linter'
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/stylelinter.yml@21adfb765fcee075f99b03fef77638819fbd019b
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/stylelinter.yml@994c3acc1b3162bd020d758fa0d80758dc28470a
 
   oldlinter:
     name: Linter
