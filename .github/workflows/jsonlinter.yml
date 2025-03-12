@@ -1,0 +1,19 @@
+---
+
+name: CI
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: ['**']
+    paths:
+      - '**.json'
+  pull_request:
+    branches: [master, release-*]
+    paths:
+      - '**.json'
+  workflow_dispatch:
+
+jobs:
+  jsonlinter:
+    name: 'JSON Linter'
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_jsonlinter.yml@2f8980a72346dd91d9d6b2adc89e589dc1736238
