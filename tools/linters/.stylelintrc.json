@@ -1,5 +1,4 @@
 {
   "rules": {
   },
-  "ignoreFiles": ["public/assets/css/ui-theme-1.13.2/jquery-ui.min.css"]
 }
