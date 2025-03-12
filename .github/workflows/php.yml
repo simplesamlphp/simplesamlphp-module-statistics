@@ -41,7 +41,7 @@ jobs:
 
   stylelinter:
     name: 'Stylesheet Linter'
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/stylelinter.yml@994c3acc1b3162bd020d758fa0d80758dc28470a
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/stylelinter.yml@b791fd9dbaefa3d825ab802bb290cb2d85296703
 
   oldlinter:
     name: Linter
