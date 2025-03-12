@@ -16,8 +16,9 @@
     padding: 0 5px;
   }
 
-  table.timeseries tr.odd td {
-    background-color: #f4f4f4;
+  table.timeseries td {
+    padding-right: 2em;
+    border: 1px solid #ccc;
   }
 
   .tableview tr.total td {
@@ -31,6 +32,10 @@
     border-bottom: 1px solid #e0e0e0;
   }
 
+  table.timeseries tr.odd td {
+    background-color: #f4f4f4;
+  }
+
   .tableview th {
     background: #e5e5e5;
   }
@@ -38,11 +43,6 @@
   .tableview th.value,
   .tableview td.value {
     text-align: right;
-  }
-
-  table.timeseries td {
-    padding-right: 2em;
-    border: 1px solid #ccc;
   }
 
   td.datacontent {
