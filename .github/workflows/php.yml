@@ -43,6 +43,10 @@ jobs:
     name: 'Stylesheet Linter'
     uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/stylelinter.yml@a3eb0668e6c641e0cd16280358ae947818caec9c
 
+  xmllinter:
+    name: 'XML Linter'
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/xmllinter.yml@e38a2f00b8bdb04ef834f6a9e153605ec2da8829
+
   oldlinter:
     name: Linter
     runs-on: ['ubuntu-latest']
