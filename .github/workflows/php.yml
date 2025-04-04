@@ -21,7 +21,7 @@ jobs:
       matrix:
         php-version: ['8.1', '8.2', '8.3', '8.4']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@5bf3ffe7bccdd5872977bf154a1ebd87c61f2c8e
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.9.0
     with:
       php-version: ${{ matrix.php-version }}
 
@@ -30,12 +30,12 @@ jobs:
     strategy:
       fail-fast: false
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@5bf3ffe7bccdd5872977bf154a1ebd87c61f2c8e
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.9.0
     with:
       enable_eslinter: true
       enable_jsonlinter: true
       enable_stylelinter: true
-      enable_yamllinter: false
+      enable_yamllinter: true
 
   unit-tests-linux:
     name: "Unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
